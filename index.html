@@ -17,6 +17,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.1/jspdf.plugin.autotable.min.js"></script>
 
+    <!-- Sistem Manajemen Qurban SDK -->
+    <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyBzF7mPCEuDdWtaGb9G1zPZwmimRnDtc_o",
+    authDomain: "website-panitiaqurbanmnf.firebaseapp.com",
+    projectId: "website-panitiaqurbanmnf",
+    storageBucket: "website-panitiaqurbanmnf.firebasestorage.app",
+    messagingSenderId: "711397533943",
+    appId: "1:711397533943:web:7aba6da6525d3350010bf2",
+    measurementId: "G-0E8EYZP983"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+     const analytics = getAnalytics(app);
+    </script>     
+
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -1847,6 +1873,10 @@
                     <span id="loginText">Masuk</span>
                     <span id="loginLoading" class="loading" style="display: none;"></span>
                 </button>
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e0e0e0; font-size: 12px; color: #666;">
+                  <strong>Akun Default:</strong><br>
+                  Username: panitia / panitiaMNF<br>
+                </div>
             </form>
             
             <div id="loginMessage" style="margin-top: 15px;"></div>
@@ -1967,8 +1997,8 @@
                 </div>
 
                 <div class="message success">
-                    <strong>Assalamualaikum</strong> <br>Selamat Datang, Sistem Manajemen Qurban Musholla Nurul Falah siap digunakan dengan penuh berkah. Mulai dengan menambahkan data panitia atau hewan qurban.</br>
-                <p>Email: mnf.mushollanurulfalah.jakbar@gmail.com</p>
+                    <strong>أهلاً وسهلاً - Selamat datang!</strong> Sistem Manajemen Qurban Musholla Nurul Falah siap digunakan dengan penuh berkah. Mulai dengan menambahkan data panitia atau hewan qurban.
+                    <p>Email : mnf.mushollanurulfalah.jakbar@gmail.com</p>
                 </div>
             </div>
 
@@ -2849,7 +2879,7 @@
             // Simulate login process
             setTimeout(() => {
                 if ((username === 'admin' && password === 'MNF2025') || 
-                    (username === 'panitia' && password === 'panitia123')) {
+                    (username === 'panitia' && password === 'panitiaMNF')) {
                     
                     currentUser = username;
                     userRole = username === 'admin' ? 'admin' : 'panitia';
@@ -7164,5 +7194,5 @@
             window.addEventListener('offline', updateConnectionStatus);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98947926a449df9f',t:'MTc1OTU3ODc0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'989945820595df9f',t:'MTc1OTYyOTA2MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
