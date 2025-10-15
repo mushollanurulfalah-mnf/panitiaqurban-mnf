@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panitia Qurban MNF - Sistem Manajemen</title>
+    <title>Sistem Manajemen Informasi - Panitia Qurban MNF</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
@@ -294,14 +294,14 @@
         </div>
 
         <!-- Additional Statistics -->
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-6 mb-8">
-            <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-md p-6 text-white">
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-2 mb-2">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg shadow-md p-1 text-white">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-blue-100 text-sm">Dokumentasi</p>
-                        <p id="totalFoto" class="text-2xl font-bold">0 foto</p>
+                        <p class="text-blue-100 text-sm"></p>
+                        <p id="totalFoto" class="text-1xl font-medium"></p>
                     </div>
-                    <i class="fas fa-camera text-blue-200 text-3xl"></i>
+                    <i class="fas fa-camera text-blue-200 text-1xl"></i>
                 </div>
             </div>
         </div>
@@ -322,6 +322,9 @@
                     <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="guru">
                         <i class="fas fa-chalkboard-teacher mr-2"></i>Guru & Sepuh
                     </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="susunan">
+    <i class="fas fa-sitemap mr-2"></i>Susunan Panitia
+</button>
                     <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-gray-700" data-tab="galeri">
                         <i class="fas fa-images mr-2"></i>Galeri
                     </button>
@@ -353,7 +356,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                <option value="2021">1442H / 2021</option>
+                                
                             </select>
                         </div>
                         <div>
@@ -404,7 +407,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                <option value="2021">1442H / 2021</option>
+                                
                             </select>
                         </div>
                         <div>
@@ -432,7 +435,7 @@
     <thead class="bg-emerald-600 text-white sticky top-0">
       <tr>                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-b border-r border-gray-200">No</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-b border-r border-gray-200">Jenis</th>
-                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-b border-r border-gray-200">Nama Sapi</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-b border-r border-gray-200">Kode Hewan</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-b border-r border-gray-200">Pemilik</th>
                                 <th class="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider border-b border-r border-gray-200">Tahun</th>
                                 <th class="admin-only ${currentUser ? '' : 'hidden'} px-6 py-4 text-center text-xs font-semibold text-gray-700 uppercase tracking-wider border-b border-gray-200">Aksi</th>
@@ -462,7 +465,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                <option value="2021">1442H / 2021</option>
+                                
                             </select>
                         </div>
                         <div>
@@ -523,7 +526,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                <option value="2021">1442H / 2021</option>
+                                
                             </select>
                         </div>
                         <div>
@@ -564,6 +567,26 @@
                 </div>
             </div>
 
+            <!-- TAB SUSUNAN PANITIA -->
+<div id="susunan-tab" class="tab-content hidden">
+  <div class="flex justify-between items-center mb-6">
+    <h3 class="text-xl font-semibold text-gray-800"></h3>
+    <div class="flex gap-3">
+      <select id="tahunSusunan" class="px-4 py-2 border border-gray-300 rounded-lg focus:border-emerald-500">
+        <option value="2025" selected>1446H / 2025M</option>
+        <option value="2024">1445H / 2024M</option>
+        <option value="2023">1444H / 2023M</option>
+        <option value="2022">1443H / 2022M</option>
+        <option value="2021">1442H / 2021M</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Kontainer dinamis -->
+  <div id="susunanContainer" class="bg-white p-6 rounded-lg shadow border border-gray-200 leading-relaxed text-sm"></div>
+</div>
+
+
             <!-- Galeri Tab -->
             <div id="galeri-tab" class="tab-content hidden">
                 <div class="flex justify-between items-center mb-6">
@@ -583,7 +606,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                <option value="2021">1442H / 2021</option>
+                                
                             </select>
                         </div>
                         <div>
@@ -629,7 +652,7 @@
                             <option value="2024">1445H / 2024</option>
                             <option value="2023">1444H / 2023</option>
                             <option value="2022">1443H / 2022</option>
-                            <option value="2021">1442H / 2021</option>
+                            
                         </select>
                         <select id="filterLaporanJenis" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-500">
                             <option value="">Laporan Lengkap</option>
@@ -644,7 +667,7 @@
                         <button id="exportBtn" class="admin-only hidden bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg">
                             <i class="fas fa-file-pdf mr-2"></i>Export ke PDF
                         </button>
-                    </div>
+             </div>
                 </div>
 
                 <!-- Report Header -->
@@ -705,7 +728,7 @@
                                         <tr>
                                             <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border border-gray-300">No</th>
                                             <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase border border-gray-300">Jenis Hewan</th>
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase border border-gray-300">Nama Sapi</th>
+                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase border border-gray-300">Kode Hewan</th>
                                             <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border border-gray-300">Jumlah Pemilik</th>
                 
                                             <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border border-gray-300">Tahun</th>
@@ -774,7 +797,7 @@
                                             <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border border-gray-300">No</th>
                                             <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase border border-gray-300">Nama Pequrban</th>
                                             <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border border-gray-300">Jenis Hewan</th>
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase border border-gray-300">Nama Sapi</th>
+                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase border border-gray-300">Kode Hewan</th>
                                             <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border border-gray-300">Tahun</th>
                                         </tr>
                                     </thead>
@@ -866,7 +889,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                        <option value="2021">1442H / 2021</option>
+                    
                     </select>
                 </div>
                 <div class="flex justify-between">
@@ -901,7 +924,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                        <option value="2021">1442H / 2021</option>
+                    
                     </select>
                 </div>
                 <div id="pemilikContainer" class="mb-6">
@@ -944,7 +967,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                        <option value="2021">1442H / 2021</option>
+                        
                     </select>
                 </div>
                 <div class="flex justify-between">
@@ -978,7 +1001,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                        <option value="2021">1442H / 2021</option>
+                    
                     </select>
                 </div>
                 <div class="flex justify-between">
@@ -1004,7 +1027,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                        <option value="2021">1442H / 2021</option>
+                    
                     </select>
                 </div>
                 <div class="mb-4">
@@ -2465,210 +2488,107 @@
             return row;
         }
 
-        async function loadGaleriData() {
-            const grid = document.getElementById('galeriGrid');
-            const noPhotosMessage = document.getElementById('noPhotosMessage');
-            const totalFotoElement = document.getElementById('totalFotoGaleri');
-            grid.innerHTML = '';
+       async function loadGaleriData() {
+  const grid = document.getElementById('galeriGrid');
+  const noPhotosMessage = document.getElementById('noPhotosMessage');
+  const totalFotoElement = document.getElementById('totalFotoGaleri');
+  grid.innerHTML = '';
 
-            if (isDemo) {
-                let filteredData = [...demoData.galeri];
-                
-                // Apply year filter
-                const yearFilter = document.getElementById('filterGaleriTahun').value;
-                if (yearFilter) {
-                    filteredData = filteredData.filter(f => f.tahun === yearFilter);
-                }
-                
-                // Apply search filter
-                const searchTerm = document.getElementById('searchGaleri').value.toLowerCase();
-                if (searchTerm) {
-                    filteredData = filteredData.filter(f => 
-                        f.keterangan.toLowerCase().includes(searchTerm) ||
-                        f.kategori.toLowerCase().includes(searchTerm)
-                    );
-                }
-                
-                // Sort by year (newest first) then by category
-                filteredData.sort((a, b) => {
-                    if (a.tahun !== b.tahun) {
-                        return b.tahun.localeCompare(a.tahun);
-                    }
-                    return a.kategori.localeCompare(b.kategori);
-                });
-                
-                // Update total count
-                totalFotoElement.textContent = filteredData.length;
-                
-                if (filteredData.length === 0) {
-                    noPhotosMessage.classList.remove('hidden');
-                    grid.classList.add('hidden');
-                } else {
-                    noPhotosMessage.classList.add('hidden');
-                    grid.classList.remove('hidden');
-                    
-                    filteredData.forEach(foto => {
-                        const card = createFotoCard(foto);
-                        grid.appendChild(card);
-                    });
-                }
-            } else {
-                try {
-                    showLoading(true);
-                    
-                    // Simplified query to avoid composite index requirement
-                    let query = db.collection('galeri');
-                    
-                    // Apply year filter if specified
-                    const yearFilter = document.getElementById('filterGaleriTahun').value;
-                    if (yearFilter) {
-                        query = query.where('tahun', '==', yearFilter);
-                    }
-                    
-                    // Simple ordering by one field only to avoid composite index requirement
-                    query = query.orderBy('tahun', 'desc');
-                    
-                    const snapshot = await query.get();
-                    let galeriData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    
-                    // Apply search filter (client-side)
-                    const searchTerm = document.getElementById('searchGaleri').value.toLowerCase();
-                    if (searchTerm) {
-                        galeriData = galeriData.filter(f => 
-                            f.keterangan.toLowerCase().includes(searchTerm) ||
-                            f.kategori.toLowerCase().includes(searchTerm)
-                        );
-                    }
-                    
-                    // Sort by category client-side to avoid composite index requirement
-                    galeriData.sort((a, b) => {
-                        if (a.tahun !== b.tahun) {
-                            return b.tahun.localeCompare(a.tahun);
-                        }
-                        return a.kategori.localeCompare(b.kategori);
-                    });
-                    
-                    // Update total count
-                    totalFotoElement.textContent = galeriData.length;
-                    
-                    if (galeriData.length === 0) {
-                        noPhotosMessage.classList.remove('hidden');
-                        grid.classList.add('hidden');
-                    } else {
-                        noPhotosMessage.classList.add('hidden');
-                        grid.classList.remove('hidden');
-                        
-                        galeriData.forEach(foto => {
-                            const card = createFotoCard(foto);
-                            grid.appendChild(card);
-                        });
-                    }
-                    
-                    showLoading(false);
-                    
-                } catch (error) {
-                    console.error('Error loading galeri data:', error);
-                    
-                    // Fallback: simple query without any ordering
-                    try {
-                        let fallbackQuery = db.collection('galeri');
-                        
-                        // Apply year filter if specified
-                        const yearFilter = document.getElementById('filterGaleriTahun').value;
-                        if (yearFilter) {
-                            fallbackQuery = fallbackQuery.where('tahun', '==', yearFilter);
-                        }
-                        
-                        const fallbackSnapshot = await fallbackQuery.get();
-                        let fallbackData = fallbackSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                        
-                        // Apply search filter client-side
-                        const searchTerm = document.getElementById('searchGaleri').value.toLowerCase();
-                        if (searchTerm) {
-                            fallbackData = fallbackData.filter(f => 
-                                f.keterangan.toLowerCase().includes(searchTerm) ||
-                                f.kategori.toLowerCase().includes(searchTerm)
-                            );
-                        }
-                        
-                        // Sort client-side
-                        fallbackData.sort((a, b) => {
-                            if (a.tahun !== b.tahun) {
-                                return b.tahun.localeCompare(a.tahun);
-                            }
-                            return a.kategori.localeCompare(b.kategori);
-                        });
-                        
-                        // Update total count
-                        totalFotoElement.textContent = fallbackData.length;
-                        
-                        if (fallbackData.length === 0) {
-                            noPhotosMessage.classList.remove('hidden');
-                            grid.classList.add('hidden');
-                        } else {
-                            noPhotosMessage.classList.add('hidden');
-                            grid.classList.remove('hidden');
-                            
-                            fallbackData.forEach(foto => {
-                                const card = createFotoCard(foto);
-                                grid.appendChild(card);
-                            });
-                        }
-                        
-                        showLoading(false);
-                        
-                    } catch (fallbackError) {
-                        console.error('Fallback query also failed:', fallbackError);
-                        alert('Gagal memuat data galeri. Silakan coba lagi atau hubungi administrator.');
-                        showLoading(false);
-                    }
-                }
-            }
-        }
+  if (useHtmlGallery) {
+    let galeriData = [...staticGaleri];
+
+    // Filter tahun
+    const yearFilter = document.getElementById('filterGaleriTahun')?.value;
+    if (yearFilter) {
+      galeriData = galeriData.filter(f => f.tahun === yearFilter);
+    }
+
+    // Filter pencarian
+    const searchTerm = (document.getElementById('searchGaleri')?.value || '').toLowerCase();
+    if (searchTerm) {
+      galeriData = galeriData.filter(f =>
+        (f.keterangan || '').toLowerCase().includes(searchTerm) ||
+        (f.kategori || '').toLowerCase().includes(searchTerm)
+      );
+    }
+
+    // Urut berdasarkan tahun terbaru dulu
+    galeriData.sort((a, b) => {
+      if (a.tahun !== b.tahun) return (b.tahun || '').localeCompare(a.tahun || '');
+      return (a.kategori || '').localeCompare(b.kategori || '');
+    });
+
+    totalFotoElement.textContent = galeriData.length;
+
+    if (galeriData.length === 0) {
+      noPhotosMessage.classList.remove('hidden');
+      grid.classList.add('hidden');
+    } else {
+      noPhotosMessage.classList.add('hidden');
+      grid.classList.remove('hidden');
+      galeriData.forEach(foto => {
+        const card = createFotoCard(foto);
+        grid.appendChild(card);
+      });
+    }
+    return;
+  }
+
+  // --- sisanya biarkan kode Firebase asli (kalau mau aktifkan lagi nanti)
+}
 
         function createFotoCard(foto) {
-            const div = document.createElement('div');
-            div.className = 'bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200 group';
-            
-            // Get category color
-            const categoryColors = {
-                'persiapan': 'bg-yellow-100 text-yellow-800',
-                'penyembelihan': 'bg-red-100 text-red-800',
-                'pengolahan': 'bg-orange-100 text-orange-800',
-                'pembagian': 'bg-green-100 text-green-800',
-                'panitia': 'bg-blue-100 text-blue-800',
-                'lainnya': 'bg-gray-100 text-gray-800'
-            };
-            
-            const categoryColor = categoryColors[foto.kategori] || 'bg-gray-100 text-gray-800';
-            
-            div.innerHTML = `
-                <div class="relative">
-                    <img src="${foto.url}" alt="${foto.keterangan}" class="w-full h-24 sm:h-28 object-cover group-hover:scale-105 transition-transform duration-200" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik03NSA0NUMzNy41IDQ1IDQ1IDc1IDc1IDc1QzEwNSA3NSAxMTIuNSA0NSA3NSA0NVoiIGZpbGw9IiM5Q0EzQUYiLz4KPHN2ZyBpZD0iY2FtZXJhIiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSI2MCIgeT0iNjAiPgo8cGF0aCBkPSJNMTIgMTVDMTMuNjU2OSAxNSAxNSAxMy42NTY5IDE1IDEyQzE1IDEwLjM0MzEgMTMuNjU2OSA5IDEyIDlDMTAuMzQzMSA5IDkgMTAuMzQzMSA5IDEyQzkgMTMuNjU2OSAxMC4zNDMxIDE1IDEyIDE1WiIgZmlsbD0iIzlDQTNBRiIvPgo8cGF0aCBkPSJNMyA3VjE3QzMgMTguMTA0NiAzLjg5NTQzIDE5IDUgMTlIMTlDMjAuMTA0NiAxOSAyMSAxOC4xMDQ2IDIxIDE3VjdDMjEgNS44OTU0MyAyMC4xMDQ2IDUgMTkgNUgxNkwxNSAzSDlMOCA1SDVDNC44OTU0MyA1IDQgNS44OTU0MyA0IDdIMTlWMTdINVY3SDNaIiBmaWxsPSIjOUNBM0FGIi8+Cjwvc3ZnPgo8L3N2Zz4='; this.alt='Foto tidak dapat dimuat';">
-                    <div class="absolute top-1 right-1 flex space-x-1">
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-black bg-opacity-70 text-white">
-                            ${foto.tahun}
-                        </span>
-                        <button onclick="deleteFoto('${foto.id}')" class="admin-only ${currentUser ? '' : 'hidden'} bg-red-600 hover:bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                    <div class="absolute bottom-1 left-1">
-                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium ${categoryColor}">
-                            ${foto.kategori}
-                        </span>
-                    </div>
-                </div>
-                <div class="p-2">
-                    <p class="text-xs text-gray-700 line-clamp-2 leading-tight">${foto.keterangan}</p>
-                </div>
-            `;
-            
-            // Add click event to view photo
-            div.addEventListener('click', () => viewPhoto(foto));
-            
-            return div;
-        }
+    const div = document.createElement('div');
+    div.className = 'bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-200 group';
+    
+    // Warna kategori
+    const categoryColors = {
+        'persiapan': 'bg-yellow-100 text-yellow-800',
+        'penyembelihan': 'bg-red-100 text-red-800',
+        'pengolahan': 'bg-orange-100 text-orange-800',
+        'pembagian': 'bg-green-100 text-green-800',
+        'panitia': 'bg-blue-100 text-blue-800',
+        'lainnya': 'bg-gray-100 text-gray-800'
+    };
+    
+    const categoryColor = categoryColors[foto.kategori] || 'bg-gray-100 text-gray-800';
+    
+    // Gunakan URL dari fileUrl atau url (Google Drive / i.ibb)
+    const imageSrc = foto.fileUrl || foto.url || './default-image.jpg';
+
+    div.innerHTML = `
+        <div class="relative">
+            <img 
+                src="${imageSrc}" 
+                alt="${foto.keterangan || 'Foto Qurban'}" 
+                class="w-full h-24 sm:h-28 object-cover group-hover:scale-105 transition-transform duration-200"
+                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik03NSA0NUMzNy41IDQ1IDQ1IDc1IDc1IDc1QzEwNSA3NSAxMTIuNSA0NSA3NSA0NVoiIGZpbGw9IiM5Q0EzQUYiLz4KPHN2ZyBpZD0iY2FtZXJhIiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4PSI2MCIgeT0iNjAiPgo8cGF0aCBkPSJNMTIgMTVDMTMuNjU2OSAxNSAxNSAxMy42NTY5IDE1IDEyQzE1IDEwLjM0MzEgMTMuNjU2OSA5IDEyIDlDMTAuMzQzMSA5IDkgMTAuMzQzMSA5IDEyQzkgMTMuNjU2OSAxMC4zNDMxIDE1IDEyIDE1WiIgZmlsbD0iIzlDQTNBRiIvPgo8cGF0aCBkPSJNMyA3VjE3QzMgMTguMTA0NiAzLjg5NTQzIDE5IDUgMTlIMTlDMjAuMTA0NiAxOSAyMSAxOC4xMDQ2IDIxIDE3VjdDMjEgNS44OTU0MyAyMC4xMDQ2IDUgMTkgNUgxNkwxNSAzSDlMOCA1SDVDNC44OTU0MyA1IDQgNS44OTU0MyA0IDdIMTlWMTdINVY3SDNaIiBmaWxsPSIjOUNBM0FGIi8+Cjwvc3ZnPgo8L3N2Zz4='; this.alt='Foto tidak dapat dimuat';"
+            >
+            <div class="absolute top-1 right-1 flex space-x-1">
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-black bg-opacity-70 text-white">
+                    ${foto.tahun || '-'}
+                </span>
+                <button onclick="deleteFoto('${foto.id}')" class="admin-only ${currentUser ? '' : 'hidden'} bg-red-600 hover:bg-red-700 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <div class="absolute bottom-1 left-1">
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium ${categoryColor}">
+                    ${foto.kategori || '-'}
+                </span>
+            </div>
+        </div>
+        <div class="p-2">
+            <p class="text-xs text-gray-700 line-clamp-2 leading-tight">${foto.keterangan || ''}</p>
+        </div>
+    `;
+    
+    // Klik untuk lihat foto besar
+    div.addEventListener('click', () => viewPhoto(foto));
+    
+    return div;
+}
+
 
         async function loadLaporanData() {
             if (isDemo) {
@@ -3750,12 +3670,7 @@ let periode = yearFilter && yearFilter !== "all"
                     doc.line(i + 5, 35, i + 10, 40);
                 }
                 
-                // Bismillah
-                doc.setTextColor(255, 255, 255);
-                doc.setFontSize(14);
-                doc.setFont('helvetica', 'bold');
-                doc.text('بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم', pageWidth/2, 15, { align: 'center' });
-                
+                               
                 // Title
                 doc.setFontSize(18);
                 let reportTitle = 'LAPORAN KEGIATAN QURBAN';
@@ -3775,7 +3690,7 @@ let periode = yearFilter && yearFilter !== "all"
                 // Subtitle
                 doc.setFontSize(12);
                 doc.setFont('helvetica', 'normal');
-                doc.text('MASJID NURUL FALAH (MNF)', pageWidth/2, 32, { align: 'center' });
+                doc.text('MUSHOLLA NURUL FALAH (MNF)', pageWidth/2, 32, { align: 'center' });
                 
                 currentY = 55;
             }
@@ -3794,10 +3709,7 @@ let periode = yearFilter && yearFilter !== "all"
                 const totalPages = doc.internal.getNumberOfPages();
                 
                 doc.text(`Halaman ${pageNum} dari ${totalPages}`, pageWidth - margin, footerY, { align: 'right' });
-                doc.text('Sistem Manajemen Qurban MNF - Generated by Canva Code', margin, footerY);
-                doc.text(`Dicetak: ${new Date().toLocaleDateString('id-ID', { 
-                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-                })}`, margin, footerY + 5);
+               
             }
             
             // Add header to first page
@@ -3913,7 +3825,7 @@ let periode = yearFilter && yearFilter !== "all"
                 
                 doc.autoTable({
                     startY: currentY,
-                    head: [['No', 'Jenis', 'Nama Sapi', 'Jumlah Pemilik', 'Tahun']],
+                    head: [['No', 'Jenis', 'Kode Hewan', 'Jumlah Pemilik', 'Tahun']],
                     body: hewanTableData,
                     theme: 'grid',
                     headStyles: { 
@@ -4110,7 +4022,7 @@ let periode = yearFilter && yearFilter !== "all"
                 
                 doc.autoTable({
                     startY: currentY,
-                    head: [['No', 'Nama Pequrban', 'Jenis Hewan', 'Nama Sapi', 'Tahun']],
+                    head: [['No', 'Nama Pequrban', 'Jenis Hewan', 'Kode Hewan', 'Tahun']],
                     body: pequrbanTableData,
                     theme: 'grid',
                     headStyles: { 
@@ -5195,6 +5107,1314 @@ let periode = yearFilter && yearFilter !== "all"
   });
 </script>
 
+<!-- Library untuk ekspor Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script>
+// 🟢 Tambah tombol Excel baru
+document.addEventListener("DOMContentLoaded", () => {
+  const laporanHeader = document.querySelector("#laporan-tab .flex.justify-between.items-center.mb-6 .flex.items-center.space-x-4");
+  if (!laporanHeader) return;
+
+  const excelBtn = document.createElement("button");
+  excelBtn.id = "exportExcel";
+  excelBtn.className = "bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md";
+  excelBtn.innerHTML = '<i class="fas fa-file-excel mr-2"></i>Export ke Excel';
+  laporanHeader.appendChild(excelBtn);
+});
+
+// 🧾 Fungsi ekspor Excel rapi untuk semua tabel laporan
+document.addEventListener("click", (e) => {
+  if (e.target && e.target.id === "exportExcel") {
+    const tahun = document.getElementById("filterLaporanTahun").value || "2024";
+    const tanggal = new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" });
+
+    // Kumpulan semua tabel di tab laporan
+    const tables = [
+      { id: "laporanHewanTable", title: "Data Hewan Qurban" },
+      { id: "laporanMustahikTable", title: "Data Mustahik per RT" },
+      { id: "laporanPanitiaTable", title: "Data Panitia" },
+      { id: "laporanPequrbanTable", title: "Data Pequrban (Pemilik Hewan)" },
+      { id: "laporanGuruTable", title: "Data Guru & Sepuh" }
+    ];
+
+    const wb = XLSX.utils.book_new();
+
+    tables.forEach((t) => {
+      const tableEl = document.getElementById(t.id);
+      if (!tableEl) return;
+      const parentTable = tableEl.closest("table");
+      if (!parentTable || !parentTable.querySelector("tbody tr")) return;
+
+      const ws = XLSX.utils.table_to_sheet(parentTable);
+
+      // Tambahkan header laporan
+      XLSX.utils.sheet_add_aoa(ws, [
+        ["LAPORAN KEGIATAN QURBAN MUSHOLLA NURUL FALAH (MNF)"],
+        ["Jl. Pahlawan RT.010/04 Sukabumi Selatan, Kebon Jeruk, Jakarta Barat 11560"],
+        [""],
+        [t.title.toUpperCase()],
+        [`Periode: ${tahun}`, `Tanggal Cetak: ${tanggal}`],
+        [""]
+      ], { origin: "A1" });
+
+      // Gaya & lebar kolom otomatis
+      const range = XLSX.utils.decode_range(ws["!ref"]);
+      const colWidths = [];
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        let maxWidth = 10;
+        for (let R = range.s.r; R <= range.e.r; ++R) {
+          const cell = ws[XLSX.utils.encode_cell({ r: R, c: C })];
+          if (cell && cell.v) maxWidth = Math.max(maxWidth, cell.v.toString().length);
+        }
+        colWidths.push({ wch: maxWidth + 3 });
+      }
+      ws["!cols"] = colWidths;
+
+      // Border dan rata tengah
+      for (let R = range.s.r; R <= range.e.r; ++R) {
+        for (let C = range.s.c; C <= range.e.c; ++C) {
+          const cell = ws[XLSX.utils.encode_cell({ r: R, c: C })];
+          if (cell) {
+            cell.s = {
+              border: {
+                top: { style: "thin", color: { rgb: "999999" } },
+                bottom: { style: "thin", color: { rgb: "999999" } },
+                left: { style: "thin", color: { rgb: "999999" } },
+                right: { style: "thin", color: { rgb: "999999" } },
+              },
+              alignment: {
+                vertical: "center",
+                horizontal: C === 1 ? "left" : "center",
+                wrapText: true
+              },
+              font: { name: "Calibri", sz: 11 }
+            };
+          }
+        }
+      }
+
+      // Tambahkan worksheet
+      XLSX.utils.book_append_sheet(wb, ws, t.title.substring(0, 25));
+    });
+
+    // Simpan file
+    XLSX.writeFile(wb, `Laporan_Qurban_MNF_${tahun}.xlsx`);
+  }
+});
+
+</script>
+
+<script>
+const susunanPanitia = {
+  "2025": `
+    <div class="text-center mb-4">
+      <img src="https://i.ibb.co.com/JwzP9XyJ/mnf-bulat.png" class="mx-auto w-16 mb-2" />
+      <h2 class="text-lg font-semibold">SUSUNAN KEPANITIAAN</h2>
+      <h3 class="font-bold text-emerald-700">PANITIA QURBAN MUSHOLLA NURUL FALAH</h3>
+      <p class="text-sm">1446 H / 2025 M</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p><b>Pelindung</b> : Ketua RT 010/04 ( H. Hapiz HAR )</p> 
+        <p><b>Penasehat</b> : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p><b>Ketua Pelaksana</b> : Farid Kurniawan</p>
+        <p><b>Wakil Ketua</b> : Zulkarnaim</p>
+        <p><b>Sekretaris</b> : Azhari H. Hafiz</p>
+        <p><b>Wakil Sekretaris</b> : Ahmad Maulana</p>
+        <p><b>Bendahara</b> : Muhammad Toha</p>
+        <p><b>Wakil Bendahara</b> : Tono</p>
+      </div>
+    </div>
+    <hr class="my-4 border-gray-300">
+    <h4 class="text-center font-bold underline mb-2">Seksi - Seksi</h4>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p class="font-semibold">Seksi Pemotongan</p>
+        <p>Koord. : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p>Anggota : <ol class="list-decimal list-inside ml-4"><li>Anwar Asyuballi</li></p>
+        </ol>
+
+        <p class="font-semibold mt-3">Seksi Humas</p>
+        <p>Koord. : Rudi Hartono HAH</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Amrullah Sanwani</li>
+          <li>Bobby</li>
+          <li>Irfan Maulana</li>
+          <li>Marwansyah</li>
+          <li>Refy Mei Putra</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Perlengkapan</p>
+        <p>Koord. : Ust. Hasan Asnawi</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Husein Asnawi</li>
+          <li>Syarifudin Sutarno</li>
+          <li>Muhammad Ridwan</li>
+          <li>Muhammad Rizqi Muslih</li>
+          <li>Manhal</li><li>Anshorullah</li><li>Ferry Firdaus</li><li>Riadi Barkan</li><li>Andri Muslih</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Konsumsi</p>
+        <p>Koord. : H. Amrullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sanuri Nasir</li><li>Radi Hs</li><li>Samhadi</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengesetan</p>
+        <p>Koord. : Rhitam/Masnur</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Tugirin</li><li>Zainal Syahri</li><li>Djohar Arifin</li><li>Sa'duni HA</li><li>Zaki Ahmad Thohir</li><li>Sopyan Anim</li>
+          <li>Andri</li><li>Heru</li><li>Isnan</li><li>Saiful H.Muchtar</li><li>Marifal H.Abdillah</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengumpul Hati,Kepala dll</p>
+        <p>Koord. : Taupik HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Zainuri</li><li>Hibatullah Hs</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Dokumentasi</p>
+        <p>Koord. : Farhan Syauqi</p>
+       </div>
+
+      <div>
+       <p class="font-semibold mt-3">Seksi Pencuci Perut</p>
+        <p>Koord. : Ust. Fadhullah S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Muslih Sabeni</li><li>Ismail Sabeni</li><li>Yanto</li><li>Budiono</li><li>Wibowo</li><li>Subagio</li><li>Hasbih</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pengangkutan</p>
+        <p>Koord. : Rahmatullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Rahmat Hidayat</li><li>Arifin</li><li>Rahmat</li><li>Dayat Sayuti</li><li>Ahmad Zarkasyi</li><li>Mohammad Riski</li>
+          <li>Reza Dego</li><li>Reza Fahlevi</li><li>Hafis Huzaefah</li><li>Kiki Nurizki</li><li>Yayat</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Penghalus</p>
+        <p>Koord. : Ust. Maulana Hs S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sudarmaji</li><li>Djunaidi Mingga/li><li>Asmat Ribut</li><li>H. Amrullah Halimi</li><li>Azhar</li><li>Hendrik</li>
+          <li>Zulhendi</li><li>Endang</li><li>Buyung</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pembantu Umum</p>
+        <p>Koord. : H. Hapiz HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sarmili</li><li>H. Arlen</li><li>H. Asmat Ambas</li><li>H. Yusrizal</li><li>Aden Saputra</li><li>Ikhwaluddin</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Jagal</p>
+        <p>Koord. : Ahmad Rifai Seali</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Adie</li>
+          </ol>
+          <p class="font-semibold mt-3">Seksi Keamanan</p>
+        <p>Koord. : H. Abdullah Hz</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Romlih</li>
+          </ol>
+      </div>
+    </div>
+  `,
+
+  "2024": `
+    <div class="text-center mb-4">
+      <img src="https://i.ibb.co.com/JwzP9XyJ/mnf-bulat.png" class="mx-auto w-16 mb-2" />
+      <h2 class="text-lg font-semibold">SUSUNAN KEPANITIAAN</h2>
+      <h3 class="font-Bold text-emerald-700">PANITIA QURBAN MUSHOLLA NURUL FALAH</h3>
+      <p class="text-sm">1445 H / 2024 M</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p><b>Pelindung</b> : Ketua RT 010/04 ( H. Hapiz HAR )</p> 
+        <p><b>Penasehat</b> : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p><b>Ketua Pelaksana</b> : Farid Kurniawan</p>
+        <p><b>Wakil Ketua</b> : Zulkarnaim</p>
+        <p><b>Sekretaris</b> : Azhari H. Hafiz</p>
+        <p><b>Wakil Sekretaris</b> : Ahmad Maulana</p>
+        <p><b>Bendahara</b> : Muhammad Toha</p>
+        <p><b>Wakil Bendahara</b> : Tono</p>
+      </div>
+      </div>
+    <hr class="my-4 border-gray-300">
+    <h4 class="text-center font-bold underline mb-2">Seksi - Seksi</h4>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p class="font-semibold">Seksi Pemotongan</p>
+        <p>Koord. : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p>Anggota : <ol class="list-decimal list-inside ml-4"><li>Anwar Asyuballi</li></p>
+        </ol>
+
+        <p class="font-semibold mt-3">Seksi Humas</p>
+        <p>Koord. : Rudi Hartono HAH</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Amrullah Sanwani</li>
+          <li>Bobby</li>
+          <li>Irfan Maulana</li>
+          <li>Marwansyah</li>
+          <li>Refy Mei Putra</li><li>Muhammad Andika</li><li>Muhammad Zidan</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Perlengkapan</p>
+        <p>Koord. : Ust. Hasan Asnawi</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Husein Asnawi</li>
+          <li>Syarifudin Sutarno</li>
+          <li>Muhammad Ridwan</li>
+          <li>Reza Dego</li>
+          <li>Manhal</li><li>Kiki Nurizki</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Konsumsi</p>
+        <p>Koord. : H. Amrullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sanuri Nasir</li><li>Radi Hs</li><li>Samhadi</li><li>Riadi Barkan</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengesetan</p>
+        <p>Koord. : Rhitam/Masnur</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Tugirin</li><li>Zainal Syahri</li><li>Djohar Arifin</li><li>Sa'duni HA</li><li>Zaki Ahmad Thohir</li><li>Sopyan Anim</li>
+          <li>Heru</li><li>Isnan</li><li>Saiful H.Muchtar</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengumpul Hati,Kepala dll</p>
+        <p>Koord. : Taupik HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Zainuri</li><li>Hibatullah Hs</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Dokumentasi</p>
+        <p>Koord. : Anshorullah</p>
+         <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Farhan Syauqi</li>
+        </ol>
+         <p class="font-semibold mt-3">Seksi Keamanan</p>
+        <p>Koord. : H. Abdullah Hz</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Romlih</li>
+          </ol>
+       </div>
+
+      <div>
+       <p class="font-semibold mt-3">Seksi Pencuci Perut</p>
+        <p>Koord. : Wibowo</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Muslih Sabeni</li><li>Ismail Sabeni</li><li>Yanto</li><li>Budiono</li><li>Mohammad Riski</li><li>Subagio</li><li>Hasbih</li>
+          <li>Andri Muslih</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pengangkutan</p>
+        <p>Koord. : Rahmatullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Rahmat Hidayat</li><li>Arifin</li><li>Rahmat</li><li>Dayat Sayuti</li><li>Ahmad Zarkasyi</li><li>Ferry Firdaus</li>
+          <li>Muhammad Rizki Muslih</li><li>Reza Fahlevi</li><li>Hafis Huzaefah</li><li>Yayat</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Penghalus</p>
+        <p>Koord. : Ust. Abdul Muiz S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sudarmaji</li><li>Djunaidi Mingga/li><li>Asmat Ribut</li><li>H. Amrullah Halimi</li><li>Azhar</li><li>Hendrik</li>
+          <li>Ust. Maulana Hs S.Pd.I</li><li>Zulhendi</li><li>Endang</li><li>Buyung</li><li>Syafei</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pembantu Umum</p>
+        <p>Koord. : H. Hapiz HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>H. Arlen</li><li>H. Asmat Ambas</li><li>H. Yusrizal</li><li>H. Syarifuddin</li><li>Aden Saputra</li><li>Ikhwaluddin</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Jagal</p>
+        <p>Koord. : Sahrul Seali</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Rifai Seali</li><li>Adie</li>
+          </ol>
+         
+      </div>
+    </div>
+  `,
+
+  "2023": `
+    <div class="text-center mb-4">
+      <img src="https://i.ibb.co.com/JwzP9XyJ/mnf-bulat.png" class="mx-auto w-16 mb-2" />
+      <h2 class="text-lg font-bold">SUSUNAN KEPANITIAAN</h2>
+      <h3 class="font-semibold text-emerald-700">PANITIA QURBAN MUSHOLLA NURUL FALAH</h3>
+      <p class="text-sm">1444 H / 2023 M</p>
+    </div>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p><b>Pelindung</b> : Ketua RT 010/04 ( H. Hapiz HAR )</p> 
+        <p><b>Penasehat</b> : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p><b>Ketua Pelaksana</b> : Zaki Ahmad Thohir</p>
+        <p><b>Wakil Ketua</b> : Farid Kurniawan</p>
+        <p><b>Sekretaris</b> : Azhari H. Hafiz</p>
+        <p><b>Wakil Sekretaris</b> : Ahmad Maulana</p>
+        <p><b>Bendahara</b> : Muhammad Toha</p>
+        <p><b>Wakil Bendahara</b> : Tono</p>
+      </div>
+      </div>
+    <hr class="my-4 border-gray-300">
+    <h4 class="text-center font-bold underline mb-2">Seksi - Seksi</h4>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p class="font-semibold">Seksi Pemotongan</p>
+        <p>Koord. : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p>Anggota : <ol class="list-decimal list-inside ml-4"><li>Anwar Asyuballi</li></p>
+        </ol>
+
+        <p class="font-semibold mt-3">Seksi Humas</p>
+        <p>Koord. : Rudi Hartono HAH</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Amrullah Sanwani</li>
+          <li>Bobby</li>
+          <li>Irfan Maulana</li>
+          <li>Marwansyah</li>
+          <li>Yudi</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Perlengkapan</p>
+        <p>Koord. : Ferry Firdaus</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ust. Hasan Asnawi</li>
+          <li>Husein Asnawi</li>
+          <li>Ahmad Zarkasyi</li>
+          <li>Reza Dego</li>
+          <li>Manhal</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Konsumsi</p>
+        <p>Koord. : H. Amrullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sanuri Nasir</li><li>Mat Yasin</li><li>Radi Hs</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengesetan</p>
+        <p>Koord. : Tugirin</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Rhitam/Masnur</li><li>Zainal Syahri</li><li>Djohar Arifin</li><li>Sa'duni HA</li><li>Zulkarnain</li><li>Sopyan Anim</li>
+          <li>Riadi Barkan</li><li>Heru</li><li>Isnan</li><li>Saiful H.Muchtar</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengumpul Hati,Kepala dll</p>
+        <p>Koord. : Taupik HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Zainuri</li><li>Samhadi</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Dokumentasi</p>
+        <p>Koord. : Anshorullah</p>
+
+         <p class="font-semibold mt-3">Seksi Jagal</p>
+        <p>Koord. : Sahrul Seali</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Rifai Seali</li>
+          </ol>
+        <p class="font-semibold mt-3">Seksi Keamanan</p>
+        <p>Koord. : H. Muchlas</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>H. Abdullah Hz</li>
+          </ol>
+       </div>
+
+      <div>
+       <p class="font-semibold mt-3">Seksi Pencuci Perut</p>
+        <p>Koord. : Ust. Fadhullah S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Muslih Sabeni</li><li>Ismail Sabeni</li><li>Yanto</li><li>Budiono</li><li>Wibowo</li><li>Subagio</li><li>Hasbih</li>
+          <li>Romlih</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pengangkutan</p>
+        <p>Koord. : Rahmatullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Rahmat Hidayat</li><li>Arifin</li><li>Rahmat</li><li>Dayat Sayuti</li><li>Hibatullah Hs</li><li>Syarifuddin Sutarno</li>
+          <li>Mohammad Riski</li><li>Andri Muslih</li><li>Hafis Huzaefah</li><li>Yayat</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Penghalus</p>
+        <p>Koord. : Ust. Abdul Muiz S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ust. Maulana Hs S.Pd.I</li><li>Sudarmaji</li><li>Djunaidi Mingga</li><li>Asmat Ribut</li><li>Azhar</li><li>Hendrik</li>
+          <li>Zulhendi</li><li>Endang</li><li>Buyung</li><li>Paryadi</li><li>Aden Saputra</li><li>Ali Kudus</li><li>Ahmad Roni HAH</li><li>Syafei</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pembantu Umum</p>
+        <p>Koord. : Sarmili</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>H. Hapiz HAR</li><li>H. Arlen</li><li>H. Asmat Ambas</li><li>H. Yusrizal</li><li>H. Syarifuddin</li><li>Sanwani HM</li><li>Ahmad Anim</li>
+          <li>Ikhwaluddin</li><li>Ust. A. Kholil</li><li>Kadila</li><li>Ruslan</li>
+        </ol>
+      </div>
+    </div>
+  `,
+  "2022": `
+    <div class="text-center mb-4">
+      <img src="https://i.ibb.co.com/JwzP9XyJ/mnf-bulat.png" class="mx-auto w-16 mb-2" />
+      <h2 class="text-lg font-semibold">SUSUNAN KEPANITIAAN</h2>
+      <h3 class="font-bold text-emerald-700">PANITIA QURBAN MUSHOLLA NURUL FALAH</h3>
+      <p class="text-sm">1443 H / 2022 M</p>
+    </div>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p><b>Pelindung</b> : Ketua RT 010/04 ( H. Hapiz HAR )</p> 
+        <p><b>Penasehat</b> : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p><b>Ketua Pelaksana</b> : Zaki Ahmad Thohir</p>
+        <p><b>Wakil Ketua</b> : Farid Kurniawan</p>
+        <p><b>Sekretaris</b> : Azhari H. Hafiz</p>
+        <p><b>Wakil Sekretaris</b> : Ahmad Maulana</p>
+        <p><b>Bendahara</b> : Muhammad Toha</p>
+        <p><b>Wakil Bendahara</b> : Tono</p>
+      </div>
+      </div>
+    <hr class="my-4 border-gray-300">
+    <h4 class="text-center font-bold underline mb-2">Seksi - Seksi</h4>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p class="font-semibold">Seksi Pemotongan</p>
+        <p>Koord. : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p>Anggota : <ol class="list-decimal list-inside ml-4"><li>Anwar Asyuballi</li></p>
+        </ol>
+
+        <p class="font-semibold mt-3">Seksi Humas</p>
+        <p>Koord. : Rudi Hartono HAH</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Kadila</li>
+          <li>Bobby</li>
+          <li>Amrullah Sanwani</li>
+          <li>Marwansyah</li>
+          <li>Zulkarnain</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Perlengkapan</p>
+        <p>Koord. : Ferry Firdaus</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ust. Hasan Asnawi</li>
+          <li>Samhadi</li>
+          <li>Ahmad Zarkasyi</li>
+          <li>Reza Dego</li>
+          <li>Adi</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Konsumsi</p>
+        <p>Koord. : H. Amrullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sanuri Nasir</li><li>Mat Yasin</li><li>Radi Hs</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengesetan</p>
+        <p>Koord. : Ahmad Rifai Seali</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Tugirin</li><li>Rhitam/Masnur</li><li>Zainal Syahri</li><li>Djohar Arifin</li><li>Sa'duni HA</li><li>Ahmad Anim</li><li>Sutarno</li>
+          <li>H. Yusrizal</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengumpul Hati,Kepala dll</p>
+        <p>Koord. : Taupik HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Zainuri</li><li>Riadi Barkan</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Dokumentasi</p>
+        <p>Koord. : Anshorullah</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Irfan Maulana</li>
+          </ol>
+                
+        <p class="font-semibold mt-3">Seksi Keamanan</p>
+        <p>Koord. : H. Muchlas</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>H. Abdullah Hz</li>
+          </ol>
+       </div>
+
+      <div>
+       <p class="font-semibold mt-3">Seksi Pencuci Perut</p>
+        <p>Koord. : Ust. Fadhullah S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Muslih Sabeni</li><li>Ismail Sabeni</li><li>Yanto</li><li>Budiono</li><li>Wibowo</li><li>Subagio</li><li>Hasbih</li>
+          <li>Romlih</li><li>Husein Asnawi</li><li>Agus</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pengangkutan</p>
+        <p>Koord. : Rahmatullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Rahmat Hidayat</li><li>Arifin</li><li>Rahmat</li><li>Dayat Sayuti</li><li>Hibatullah Hs</li><li>Sopyab Anim</li>
+          <li>Mohammad Riski</li><li>Kinan</li><li>Hafis Huzaefah</li><li>Yayat</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Penghalus</p>
+        <p>Koord. : Ust. Abdul Muiz S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ust. Maulana Hs S.Pd.I</li><li>Sudarmaji</li><li>Djunaidi Mingga</li><li>Asmat Ribut</li><li>Azhar</li><li>Hendrik</li>
+          <li>Amrullah Halimi</li><li>Paryadi</li><li>Aden Saputra</li><li>Ali Kudus</li><li>Ahmad Roni HAH</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pembantu Umum</p>
+        <p>Koord. : Sarmili</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>H. Hapiz HAR</li><li>H. Arlen</li><li>H. Asmat Ambas</li><li>Sanwani HM</li>
+          <li>Ikhwaluddin</li><li>Ust. A. Kholil</li><li>Ruslan</li>
+        </ol>
+      </div>
+    </div>
+  `,
+   "2021": `
+    <div class="text-center mb-4">
+      <img src="https://i.ibb.co.com/JwzP9XyJ/mnf-bulat.png" class="mx-auto w-16 mb-2" />
+      <h2 class="text-lg font-semibold">SUSUNAN KEPANITIAAN</h2>
+      <h3 class="font-bold text-emerald-700">PANITIA QURBAN MUSHOLLA NURUL FALAH</h3>
+      <p class="text-sm">1442 H / 2021 M</p>
+    </div>
+     <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p><b>Pelindung</b> : Ketua RT 010/04 ( H. Hapiz HAR )</p> 
+        <p><b>Penasehat</b> : Ust. H. Najamuddin HA, S.Pd.I</p>
+        <p><b>Ketua Pelaksana</b> : Ust. Maulana Hs S.Pd.I</p>
+        <p><b>Wakil Ketua</b> : Sarmili S.Sos</p>
+        <p><b>Sekretaris</b> : Zaki Ahmad Thohir</p>
+        <p><b>Wakil Sekretaris</b> : Azhari H. Hafiz</p>
+        <p><b>Bendahara</b> : Tono</p>
+        <p><b>Wakil Bendahara</b> : Bilal</p>
+      </div>
+      </div>
+    <hr class="my-4 border-gray-300">
+    <h4 class="text-center font-bold underline mb-2">Seksi - Seksi</h4>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <p class="font-semibold">Seksi Pemotongan</p>
+        <p>Koord. : Ust. H. Najamuddin HA, S.Pd.I</p>
+       
+        <p class="font-semibold mt-3">Seksi Humas</p>
+        <p>Koord. : Rudi Hartono HAH</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Kadila</li>
+          <li>Hibatullah Hs</li>
+          <li>Bobby</li>
+          <li>Amrullah Sanwani</li>
+          <li>Marwansyah</li>
+          <li>Zulkarnain</li>
+          <li>Syihabbudin</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Perlengkapan</p>
+        <p>Koord. : Anwar Assyuballi</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ust. Hasan Asnawi</li>
+          <li>Samhadi</li>
+          <li>Ahmad Zarkasyi</li>
+          <li>M. Toha</li>
+          <li>Ferry Firdaus</li>
+          <li>Wibowo</li>
+          <li>Budiono</li>
+          <li>Romlih</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Konsumsi</p>
+        <p>Koord. : H. Amrullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sanuri Nasir</li><li>Mat Yasin</li><li>Radi Hs</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengesetan</p>
+        <p>Koord. : Sahrul Seali</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Rifai Seali</li><li>Tugirin</li><li>Rhitam/Masnur</li><li>Zainal Syahri</li><li>Djohar Arifin</li><li>Sa'duni HA</li><li>Husein</li><li>Sutarno</li>
+          <li>H. Yusrizal</li><li>Farid Kurniawan</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Pengumpul Hati,Kepala dll</p>
+        <p>Koord. : Taupik HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Ahmad Zainuri</li><li>Riadi Barkan</li><li>Dayat Sayuti</li>
+        </ol>
+          <p class="font-semibold mt-3">Seksi Dokumentasi</p>
+        <p>Koord. : Anshorullah</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Irfan Maulana</li>
+          </ol>    
+        <p class="font-semibold mt-3">Seksi Keamanan</p>
+        <p>Koord. : H. Muchlas</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>H. Abdullah Hz</li>
+          </ol>
+       </div>
+
+      <div>
+       <p class="font-semibold mt-3">Seksi Pencuci Perut</p>
+        <p>Koord. : Ust. Fadhullah S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Muslih Sabeni</li><li>Ismail Sabeni</li><li>Yanto</li><li>Sopyan Anim</li><li>Subagio</li><li>Hasbih</li>
+          <li>Agus</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pengangkutan</p>
+        <p>Koord. : Rahmatullah HAR</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Rahmat Hidayat</li><li>Arifin</li><li>Mohammad Riski</li><li>Kinan</li><li>Ahmad Maulana<li>Reza Dego</li></li><li>Hafis Huzaefah</li><li>Yayat</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Penghalus</p>
+        <p>Koord. : Ust. Abdul Muiz S.Pd.I</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>Sudarmaji</li><li>Djunaidi Mingga</li><li>Asmat Ribut</li><li>Azhar</li><li>Hendrik</li><li>H. Thamrin</li><li>Ahmad Animn</li>
+          <li>Amrullah Halimi</li><li>Paryadi</li><li>Aden Saputra</li><li>Ali Kudus</li><li>Ahmad Roni HAH</li><li>Sanwani Sayuti</li>
+        </ol>
+        <p class="font-semibold mt-3">Seksi Pembantu Umum</p>
+        <p>Koord. : Ruslan</p>
+        <p>Anggota :</p>
+        <ol class="list-decimal list-inside ml-4">
+          <li>H. Hapiz HAR</li><li>H. Arlen</li><li>H. Asmat Ambas</li><li>Sanwani HM</li>
+          <li>Ikhwaluddin</li><li>Ust. A. Kholil</li>
+        </ol>
+      </div>
+    </div>
+  `
+};
+
+// --- tampilkan otomatis saat ganti tahun ---
+function tampilkanSusunan(tahun) {
+  const container = document.getElementById("susunanContainer");
+  container.innerHTML = susunanPanitia[tahun] || `<p class='text-gray-500 italic'>Belum ada data tahun ${tahun}.</p>`;
+}
+document.getElementById("tahunSusunan").addEventListener("change", e => tampilkanSusunan(e.target.value));
+
+// tampilkan default (2025)
+document.addEventListener("DOMContentLoaded", () => tampilkanSusunan("2025"));
+
+// --- ekspor ke PDF ---
+document.getElementById("exportSusunanPDF").addEventListener("click", () => {
+  const tahun = document.getElementById("tahunSusunan").value;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF("p", "mm", "a4");
+
+  const logo = new Image();
+  logo.src = "https://i.ibb.co.com/W4rmSh0f/white-mnf2.png";
+  doc.addImage(logo, "PNG", 15, 10, 20, 20);
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(14);
+  doc.text("SUSUNAN KEPANITIAAN", 70, 20);
+  doc.setFontSize(12);
+  doc.text("PANITIA QURBAN MUSHOLLA NURUL FALAH", 55, 27);
+  doc.setFontSize(10);
+  doc.text(`${1446 - (2025 - parseInt(tahun))} H / ${tahun} M`, 95, 33);
+  doc.line(15, 36, 195, 36);
+
+  const html = document.getElementById("susunanContainer");
+  doc.html(html, {
+    callback: (doc) => doc.save(`Susunan-Panitia-Qurban-${tahun}.pdf`),
+    x: 15,
+    y: 40,
+    html2canvas: { scale: 0.25 },
+    width: 180
+  });
+});
+</script>
+
+<!-- ========================================================= -->
+<!-- FITUR: IMPORT + EXPORT DATA PANITIA DARI EXCEL -->
+<!-- ========================================================= -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script>
+  // Elemen utama
+  const panitiaTab = document.getElementById("panitia-tab");
+
+  // Buat tombol Import & Export
+  const importPanitiaBtn = document.createElement("button");
+  importPanitiaBtn.id = "importPanitiaBtn";
+  importPanitiaBtn.innerHTML = '<i class="fas fa-file-excel mr-2"></i>Import Excel';
+  importPanitiaBtn.className = "admin-only hidden bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg ml-2";
+
+  const exportPanitiaBtn = document.createElement("button");
+  exportPanitiaBtn.id = "exportPanitiaBtn";
+  exportPanitiaBtn.innerHTML = '<i class="fas fa-download mr-2"></i>Export Excel';
+  exportPanitiaBtn.className = "admin-only hidden bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg ml-2";
+
+  const panitiaFileInput = document.createElement("input");
+  panitiaFileInput.type = "file";
+  panitiaFileInput.id = "importPanitiaFile";
+  panitiaFileInput.accept = ".xlsx,.csv";
+  panitiaFileInput.className = "hidden";
+
+  // Tambahkan tombol ke header Panitia
+  const panitiaHeader = panitiaTab.querySelector(".flex.justify-between.items-center");
+  panitiaHeader.appendChild(importPanitiaBtn);
+  panitiaHeader.appendChild(exportPanitiaBtn);
+  panitiaHeader.appendChild(panitiaFileInput);
+
+  // =========================================================
+  // 🔹 IMPORT EXCEL PANITIA
+  // =========================================================
+  importPanitiaBtn.addEventListener("click", () => panitiaFileInput.click());
+
+  panitiaFileInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: "array" });
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(sheet);
+
+      const batch = firebase.firestore().batch();
+      const panitiaRef = firebase.firestore().collection("panitia");
+
+      json.forEach((row) => {
+        const newDoc = panitiaRef.doc();
+        batch.set(newDoc, {
+          nama: row.Nama || "",
+          jabatan: row.Jabatan || "",
+          hp: row.HP?.toString() || "",
+          tahun: row.Tahun?.toString() || new Date().getFullYear().toString(),
+        });
+      });
+
+      await batch.commit();
+      alert(`✅ Berhasil menambahkan ${json.length} data panitia dari Excel!`);
+      location.reload();
+    };
+
+    reader.readAsArrayBuffer(file);
+  });
+// =========================================================
+// 🔹 EXPORT DATA PANITIA (PER TAHUN) — HASIL RAPI
+// =========================================================
+exportPanitiaBtn.addEventListener("click", async () => {
+  // Ambil tahun dari filter (kalau kosong, pakai tahun sekarang)
+  const tahun = document.getElementById("filterPanitiaTahun").value || new Date().getFullYear().toString();
+
+  // Ambil data dari Firestore per tahun
+  const panitiaRef = firebase.firestore().collection("panitia").where("tahun", "==", tahun);
+  const snapshot = await panitiaRef.get();
+
+  if (snapshot.empty) {
+    alert(`⚠️ Tidak ada data panitia untuk tahun ${tahun}!`);
+    return;
+  }
+
+  // Format data
+  const data = snapshot.docs.map((doc, index) => {
+    const d = doc.data();
+    return {
+      No: index + 1,
+      Nama: d.nama || "",
+      Jabatan: d.jabatan || "",
+      "No. HP": d.hp || "",
+      Tahun: d.tahun || tahun,
+    };
+  });
+
+  // Buat worksheet
+  const worksheet = XLSX.utils.json_to_sheet([]);
+  XLSX.utils.sheet_add_aoa(worksheet, [
+    [`DATA PANITIA QURBAN TAHUN ${tahun}`],
+    [""],
+    ["No", "Nama", "Jabatan", "No. HP", "Tahun"],
+  ], { origin: "A1" });
+
+  XLSX.utils.sheet_add_json(worksheet, data, { origin: "A4", skipHeader: true });
+
+  // Auto width kolom
+  worksheet["!cols"] = [
+    { wch: 5 },   // No
+    { wch: 25 },  // Nama
+    { wch: 20 },  // Jabatan
+    { wch: 15 },  // HP
+    { wch: 10 },  // Tahun
+  ];
+
+  // Tambahkan border + gaya rapi
+  const range = XLSX.utils.decode_range(worksheet["!ref"]);
+  for (let R = range.s.r; R <= range.e.r; ++R) {
+    for (let C = range.s.c; C <= range.e.c; ++C) {
+      const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+      if (!worksheet[cellAddress]) continue;
+      worksheet[cellAddress].s = {
+        border: {
+          top: { style: "thin", color: { auto: 1 } },
+          bottom: { style: "thin", color: { auto: 1 } },
+          left: { style: "thin", color: { auto: 1 } },
+          right: { style: "thin", color: { auto: 1 } },
+        },
+        alignment: {
+          vertical: "center",
+          horizontal: (C === 1) ? "left" : "center",
+          wrapText: true,
+        },
+        font: { name: "Calibri", sz: 11 },
+      };
+    }
+  }
+
+  // Buat file workbook
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Panitia");
+
+  // Nama file otomatis per tahun
+  const fileName = `Data_Panitia_${tahun}.xlsx`;
+  XLSX.writeFile(workbook, fileName);
+
+  alert(`✅ Data Panitia tahun ${tahun} berhasil diexport ke Excel (${fileName})`);
+});
+</script>
+
+<!-- ========================================================= -->
+<!-- FITUR: IMPORT + EXPORT DATA HEWAN (SAPI & KAMBING) -->
+<!-- ========================================================= -->
+ <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script>
+  const hewanTab = document.getElementById("hewan-tab");
+
+  // Buat tombol Import & Export
+  const importHewanBtn = document.createElement("button");
+  importHewanBtn.id = "importHewanBtn";
+  importHewanBtn.innerHTML = '<i class="fas fa-file-excel mr-2"></i>Import Excel';
+  importHewanBtn.className = "admin-only hidden bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg ml-2";
+
+  const exportHewanBtn = document.createElement("button");
+  exportHewanBtn.id = "exportHewanBtn";
+  exportHewanBtn.innerHTML = '<i class="fas fa-download mr-2"></i>Export Excel';
+  exportHewanBtn.className = "admin-only hidden bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg ml-2";
+
+  const hewanFileInput = document.createElement("input");
+  hewanFileInput.type = "file";
+  hewanFileInput.id = "importHewanFile";
+  hewanFileInput.accept = ".xlsx,.csv";
+  hewanFileInput.className = "hidden";
+
+  // Masukkan ke header tab Hewan
+  const hewanHeader = hewanTab.querySelector(".flex.justify-between.items-center");
+  hewanHeader.appendChild(importHewanBtn);
+  hewanHeader.appendChild(exportHewanBtn);
+  hewanHeader.appendChild(hewanFileInput);
+
+  // =========================================================
+  // 🔹 IMPORT DATA HEWAN (BISA SAPI & KAMBING)
+  // =========================================================
+  importHewanBtn.addEventListener("click", () => hewanFileInput.click());
+
+  hewanFileInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: "array" });
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(sheet);
+
+      const batch = firebase.firestore().batch();
+      const hewanRef = firebase.firestore().collection("hewan");
+
+      json.forEach((row) => {
+        const newDoc = hewanRef.doc();
+        const jenis = (row.Jenis || "").trim().toLowerCase(); // sapi/kambing
+        const namaHewan = row.Nama_Hewan || "";
+        const pemilikList = row.Pemilik ? row.Pemilik.split(",").map(p => p.trim()) : [];
+        const tahun = row.Tahun?.toString() || new Date().getFullYear().toString();
+
+        batch.set(newDoc, {
+          jenis,
+          namaHewan,
+          pemilik: pemilikList,
+          tahun,
+        });
+      });
+
+      await batch.commit();
+      alert(`✅ Berhasil menambahkan ${json.length} data hewan (Sapi & Kambing) dari Excel!`);
+      location.reload();
+    };
+
+    reader.readAsArrayBuffer(file);
+  });
+
+ // =========================================================
+// 🔹 EXPORT DATA HEWAN (PER TAHUN & PER JENIS) — HASIL RAPI
+// =========================================================
+exportHewanBtn.addEventListener("click", async () => {
+  const tahun = document.getElementById("filterHewanTahun").value || new Date().getFullYear().toString();
+  const jenisSelect = document.getElementById("filterHewanJenis");
+
+  // Ambil jenis dari dropdown (Sapi / Kambing / Semua)
+  const selectedJenis = jenisSelect ? jenisSelect.value.toLowerCase() : "semua";
+
+  // Query Firestore
+  let hewanRef = firebase.firestore().collection("hewan").where("tahun", "==", tahun);
+  if (selectedJenis !== "semua") {
+    hewanRef = hewanRef.where("jenis", "==", selectedJenis);
+  }
+
+  const snapshot = await hewanRef.get();
+  if (snapshot.empty) {
+    alert("⚠️ Tidak ada data hewan sesuai filter!");
+    return;
+  }
+
+  // Ambil data dari Firestore
+  const data = snapshot.docs.map((doc, index) => {
+    const d = doc.data();
+    return {
+      No: index + 1,
+      Jenis: d.jenis ? d.jenis.toUpperCase() : "",
+      Nama_Hewan: d.namaHewan || "-",
+      Pemilik: Array.isArray(d.pemilik) ? d.pemilik.join(", ") : "",
+      Tahun: d.tahun || tahun,
+    };
+  });
+
+  // Judul dinamis
+  const judul =
+    selectedJenis === "semua"
+      ? `DATA HEWAN QURBAN TAHUN ${tahun}`
+      : `DATA HEWAN QURBAN TAHUN ${tahun} (${selectedJenis.toUpperCase()})`;
+
+  // Buat worksheet
+  const worksheet = XLSX.utils.json_to_sheet([]);
+  XLSX.utils.sheet_add_aoa(
+    worksheet,
+    [[judul], [""], ["No", "Jenis", "Nama Hewan", "Pemilik", "Tahun"]],
+    { origin: "A1" }
+  );
+
+  XLSX.utils.sheet_add_json(worksheet, data, { origin: "A4", skipHeader: true });
+
+  // Auto width kolom
+  worksheet["!cols"] = [
+    { wch: 5 },
+    { wch: 10 },
+    { wch: 15 },
+    { wch: 45 },
+    { wch: 10 },
+  ];
+
+  // Gaya rapi (border, alignment)
+  const range = XLSX.utils.decode_range(worksheet["!ref"]);
+  for (let R = range.s.r; R <= range.e.r; ++R) {
+    for (let C = range.s.c; C <= range.e.c; ++C) {
+      const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+      if (!worksheet[cellAddress]) continue;
+      worksheet[cellAddress].s = {
+        border: {
+          top: { style: "thin", color: { auto: 1 } },
+          bottom: { style: "thin", color: { auto: 1 } },
+          left: { style: "thin", color: { auto: 1 } },
+          right: { style: "thin", color: { auto: 1 } },
+        },
+        alignment: {
+          vertical: "center",
+          horizontal: (C === 3) ? "left" : "center",
+          wrapText: true,
+        },
+        font: { name: "Calibri", sz: 11 },
+      };
+    }
+  }
+
+  // Buat workbook dan simpan
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Hewan Qurban");
+
+  const fileName =
+    selectedJenis === "semua"
+      ? `Data_Hewan_Qurban_${tahun}.xlsx`
+      : `Data_Hewan_Qurban_${tahun}_${selectedJenis.charAt(0).toUpperCase() + selectedJenis.slice(1)}.xlsx`;
+
+  XLSX.writeFile(workbook, fileName);
+
+  alert(`✅ Data Hewan Qurban (${selectedJenis.toUpperCase()}, Tahun ${tahun}) berhasil diexport!`);
+});
+</script>
+
+<!-- ========================================================= -->
+<!-- FITUR: IMPORT + EXPORT DATA MUSTAHIK DARI EXCEL -->
+<!-- ========================================================= -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script>
+  // 🔹 Elemen penting
+  const mustahikTab = document.getElementById("mustahik-tab");
+
+  // Buat tombol Import dan Export
+  const importBtn = document.createElement("button");
+  importBtn.id = "importMustahikBtn";
+  importBtn.innerHTML = '<i class="fas fa-file-excel mr-2"></i>Import Excel';
+  importBtn.className = "admin-only hidden bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg ml-2";
+
+  const exportBtn = document.createElement("button");
+  exportBtn.id = "exportMustahikBtn";
+  exportBtn.innerHTML = '<i class="fas fa-download mr-2"></i>Export Excel';
+  exportBtn.className = "admin-only hidden bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg ml-2";
+
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.id = "importMustahikFile";
+  fileInput.accept = ".xlsx,.csv";
+  fileInput.className = "hidden";
+
+  // Masukkan ke header Mustahik
+  const headerBtns = mustahikTab.querySelector(".flex.justify-between.items-center");
+  headerBtns.appendChild(importBtn);
+  headerBtns.appendChild(exportBtn);
+  headerBtns.appendChild(fileInput);
+
+  // =========================================================
+  // 🔹 IMPORT EXCEL
+  // =========================================================
+  importBtn.addEventListener("click", () => fileInput.click());
+
+  fileInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: "array" });
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(sheet);
+
+      const batch = firebase.firestore().batch();
+      const mustahikRef = firebase.firestore().collection("mustahik");
+
+      json.forEach((row) => {
+        const newDoc = mustahikRef.doc();
+        batch.set(newDoc, {
+          nama: row.Nama || "",
+          rt: row.RT || "",
+          tahun: row.Tahun?.toString() || new Date().getFullYear().toString(),
+        });
+      });
+
+      await batch.commit();
+      alert(`✅ Berhasil menambahkan ${json.length} data mustahik dari Excel!`);
+      location.reload();
+    };
+
+    reader.readAsArrayBuffer(file);
+  });
+
+  // =========================================================
+// 🔹 EXPORT DATA MUSTAHIK — PER TAHUN & PER RT (RAPI)
+// =========================================================
+exportMustahikBtn.addEventListener("click", async () => {
+  const tahun = document.getElementById("filterMustahikTahun").value || new Date().getFullYear().toString();
+  const rtSelect = document.getElementById("filterMustahikRT");
+
+  // Jika kamu punya dropdown RT, ambil nilainya. Kalau belum ada, kosongkan.
+  const selectedRT = rtSelect ? rtSelect.value.trim() : "";
+
+  // Query Firestore
+  let mustahikRef = firebase.firestore().collection("mustahik").where("tahun", "==", tahun);
+  if (selectedRT && selectedRT !== "Semua") {
+    mustahikRef = mustahikRef.where("rt", "==", selectedRT);
+  }
+
+  const snapshot = await mustahikRef.get();
+  if (snapshot.empty) {
+    alert("⚠️ Tidak ada data mustahik yang cocok dengan filter ini!");
+    return;
+  }
+
+  // Ambil data dari Firestore
+  const data = snapshot.docs.map((doc, index) => {
+    const d = doc.data();
+    return {
+      No: index + 1,
+      Nama: d.nama || "",
+      RT: d.rt || "",
+      Tahun: d.tahun || tahun,
+    };
+  });
+
+  // Buat worksheet
+  const worksheet = XLSX.utils.json_to_sheet([]);
+  const judul =
+    selectedRT && selectedRT !== "Semua"
+      ? `DATA MUSTAHIK QURBAN TAHUN ${tahun} (RT ${selectedRT})`
+      : `DATA MUSTAHIK QURBAN TAHUN ${tahun}`;
+
+  XLSX.utils.sheet_add_aoa(worksheet, [
+    [judul],
+    [""],
+    ["No", "Nama", "RT", "Tahun"],
+  ], { origin: "A1" });
+
+  XLSX.utils.sheet_add_json(worksheet, data, { origin: "A4", skipHeader: true });
+
+  // Auto width kolom
+  worksheet["!cols"] = [
+    { wch: 5 },
+    { wch: 25 },
+    { wch: 10 },
+    { wch: 10 },
+  ];
+
+  // Tambah border & alignment
+  const range = XLSX.utils.decode_range(worksheet["!ref"]);
+  for (let R = range.s.r; R <= range.e.r; ++R) {
+    for (let C = range.s.c; C <= range.e.c; ++C) {
+      const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+      if (!worksheet[cellAddress]) continue;
+      worksheet[cellAddress].s = {
+        border: {
+          top: { style: "thin", color: { auto: 1 } },
+          bottom: { style: "thin", color: { auto: 1 } },
+          left: { style: "thin", color: { auto: 1 } },
+          right: { style: "thin", color: { auto: 1 } },
+        },
+        alignment: {
+          vertical: "center",
+          horizontal: (C === 1) ? "left" : "center",
+          wrapText: true,
+        },
+        font: { name: "Calibri", sz: 11 },
+      };
+    }
+  }
+
+  // Buat workbook
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Mustahik");
+
+  const fileName =
+    selectedRT && selectedRT !== "Semua"
+      ? `Data_Mustahik_${tahun}_RT_${selectedRT.replace(/\//g, "-")}.xlsx`
+      : `Data_Mustahik_${tahun}.xlsx`;
+
+  XLSX.writeFile(workbook, fileName);
+
+  alert(`✅ Data Mustahik berhasil diexport (${selectedRT || "Semua RT"}, Tahun ${tahun})`);
+});
+
+</script>
+
+<script>
+// === Gunakan Galeri dari HTML, tanpa upload ===
+const useHtmlGallery = true;
+
+// Isi daftar foto di sini (ganti url/keterangan/kategori/tahun sesuai kebutuhan)
+const staticGaleri = [
+  // 📅 Tahun 2025
+  { id: 'g2025_1', url: 'https://i.ibb.co.com/kgXSLDQV/Gambar-Whats-App-2025-05-31-pukul-16-27-02-ed478e17.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_2', url: 'https://i.ibb.co.com/1G2zfLWg/Gambar-Whats-App-2025-06-01-pukul-09-39-28-536f116c.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_3', url: 'https://i.ibb.co.com/Gf0c0PHd/Gambar-Whats-App-2025-06-04-pukul-22-43-54-9bad0e8a.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_4', url: 'https://i.ibb.co.com/d0CV3XZb/Gambar-Whats-App-2025-06-04-pukul-23-43-12-54a546a3.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_5', url: 'https://i.ibb.co.com/XfSTdZXF/Gambar-Whats-App-2025-06-05-pukul-11-48-41-d5f0d365.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_6', url: 'https://i.ibb.co.com/Y45KrF4m/Gambar-Whats-App-2025-06-07-pukul-06-32-45-abf82555.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_7', url: 'https://i.ibb.co.com/RpcMxjw6/Gambar-Whats-App-2025-06-05-pukul-14-45-45-7e8fa9bd.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_8', url: 'https://simgbb.com/avatar/d45LQDBL733B.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_9', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_10', url: 'https://simgbb.com/avatar/d45LQDBL733B.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_11', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_12', url: 'https://simgbb.com/avatar/d45LQDBL733B.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_13', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_14', url: 'https://simgbb.com/avatar/d45LQDBL733B.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_15', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_16', url: 'https://simgbb.com/avatar/d45LQDBL733B.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_17', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_18', url: 'https://simgbb.com/avatar/d45LQDBL733B.jpg', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_19', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2025' },
+  { id: 'g2025_20', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2025' },
+
+  // 📅 Tahun 2024
+ { id: 'g2023_1', url: 'https://i.ibb.co.com/ynhs2n73/16.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_2', url: 'https://i.ibb.co.com/Zz5c5ms3/15.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_3', url: 'https://i.ibb.co.com/YBr2cD1x/14.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_4', url: 'https://i.ibb.co.com/RpRNqMqR/13.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_5', url: 'https://i.ibb.co.com/NBDgbWC/12.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_6', url: 'https://i.ibb.co.com/7t7cVp7X/11.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_7', url: 'https://i.ibb.co.com/jk7hJS1G/10.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_8', url: 'https://i.ibb.co.com/rR5DwVL4/9.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2023_9', url: 'https://i.ibb.co.com/Tqk6TfB2/8.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_10', url: 'https://i.ibb.co.com/LdCKn31J/7.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_11', url: 'https://i.ibb.co.com/hJVc81WH/6.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_12', url: 'https://i.ibb.co.com/PZqNbKDF/5.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_13', url: 'https://i.ibb.co.com/MkK5sXJV/4.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_14', url: 'https://i.ibb.co.com/CDh3mdP/3.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_15', url: 'https://i.ibb.co.com/Pv7cky4R/1.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_16', url: 'https://i.ibb.co.com/rfRK5Lyc/2.jpg', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_17', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_18', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_19', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2024' },
+  { id: 'g2025_20', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2024' },
+
+  // 📅 Tahun 2023
+  { id: 'g2023_1', url: 'https://i.ibb.co.com/5XFszRrx/IMG-20230724-WA0019.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_2', url: 'https://i.ibb.co.com/zH7hkZdr/IMG-20230724-WA0025.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_3', url: 'https://i.ibb.co.com/VcGjh0m1/IMG-20230725-WA0005.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_4', url: 'https://i.ibb.co.com/TXw7B5q/IMG-20230724-WA0026.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_5', url: 'https://i.ibb.co.com/R4sq4gSH/IMG-20230724-WA0022.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_6', url: 'https://i.ibb.co.com/BHrChGVw/IMG-20230725-WA0008.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_7', url: 'https://i.ibb.co.com/yB6MKZHJ/IMG-20230724-WA0017.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_8', url: 'https://i.ibb.co.com/nNrp56Mz/IMG-20230724-WA0023.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2023_9', url: 'https://i.ibb.co.com/Dgg0H3qw/IMG-20230725-WA0003.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_10', url: 'https://i.ibb.co.com/wZd060Bj/IMG-20230724-WA0027.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_11', url: 'https://i.ibb.co.com/rRnFFSrP/IMG-20230724-WA0018.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_12', url: 'https://i.ibb.co.com/C3kq2DS3/IMG-20230724-WA0020.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_13', url: 'https://i.ibb.co.com/bRqnwPhP/IMG-20230724-WA0021.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_14', url: 'https://i.ibb.co.com/3m3Fqtm9/IMG-20230724-WA0024.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_15', url: 'https://i.ibb.co.com/PGvFbQVw/IMG-20230725-WA0002.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_16', url: 'https://i.ibb.co.com/hFhCwqch/IMG-20230725-WA0004.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_17', url: 'https://i.ibb.co.com/Fk4ST9H8/IMG-20230725-WA0006.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_18', url: 'https://i.ibb.co.com/zW8xXT8h/20.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_19', url: 'https://i.ibb.co.com/zTmt7VPQ/IMG-20230724-WA0015.jpg', keterangan: '', kategori: '', tahun: '2023' },
+  { id: 'g2025_20', url: 'https://i.ibb.co.com/MDbF83wD/2.jpg', keterangan: '', kategori: '', tahun: '2023' },
+ 
+  // 📅 Tahun 2022
+  { id: 'g2023_1', url: 'https://i.ibb.co.com/sv537vzB/16.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_2', url: 'https://i.ibb.co.com/Zz5c5ms3/15.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_3', url: 'https://i.ibb.co.com/YBr2cD1x/14.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_4', url: 'https://i.ibb.co.com/RpRNqMqR/13.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_5', url: 'https://i.ibb.co.com/NBDgbWC/12.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_6', url: 'https://i.ibb.co.com/7t7cVp7X/11.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_7', url: 'https://i.ibb.co.com/jk7hJS1G/10.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_8', url: 'https://i.ibb.co.com/rR5DwVL4/9.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2023_9', url: 'https://i.ibb.co.com/Tqk6TfB2/8.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_10', url: 'https://i.ibb.co.com/LdCKn31J/7.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_11', url: 'https://i.ibb.co.com/hJVc81WH/6.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_12', url: 'https://i.ibb.co.com/PZqNbKDF/5.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_13', url: 'https://i.ibb.co.com/MkK5sXJV/4.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_14', url: 'https://i.ibb.co.com/CDh3mdP/3.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_15', url: 'https://i.ibb.co.com/Pv7cky4R/1.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_16', url: 'https://i.ibb.co.com/rfRK5Lyc/2.jpg', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_17', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_18', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_19', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2022' },
+  { id: 'g2025_20', url: 'https://i.ibb.co/JwzP9XyJ/mnf-bulat.png', keterangan: '', kategori: '', tahun: '2022' },
+];
+
+
+// Sembunyikan tombol upload & modal
+document.addEventListener('DOMContentLoaded', () => {
+  const addFotoBtn = document.getElementById('addFotoBtn');
+  if (addFotoBtn) addFotoBtn.style.display = 'none';
+  const fotoModal = document.getElementById('fotoModal');
+  if (fotoModal) fotoModal.remove();
+});
+</script>
+
 
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98aa065da6a8df9f',t:'MTc1OTgwNDczMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
