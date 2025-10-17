@@ -107,6 +107,24 @@
     padding: 0;
   }
 
+  @keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.animate-shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.animate-shake {
+  animation: shake 0.4s ease;
+}
+
     </style>
 </head>
 <body class="bg-gradient-to-br from-emerald-600 to-white islamic-pattern min-h-screen">
@@ -177,6 +195,7 @@
                     <option value="2024">1445H / 2024</option>
                     <option value="2023">1444H / 2023</option>
                     <option value="2022">1443H / 2022</option>
+                    <option value="2021">1442H / 2021</option>
                 </select>
             </div>
         </div>
@@ -356,7 +375,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                
+                                <option value="2021">1442H / 2021</option>
                             </select>
                         </div>
                         <div>
@@ -396,7 +415,7 @@
                     <button id="addHewanBtn" class="admin-only hidden bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
                         <i class="fas fa-plus mr-2"></i>Tambah Hewan
                     </button>
-                </div>
+                    </div>
                 
                 <!-- Filter and Search Controls -->
                 <div class="bg-gray-50 p-4 rounded-lg mb-6">
@@ -407,7 +426,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                
+                                <option value="2021">1442H / 2021</option>
                             </select>
                         </div>
                         <div>
@@ -465,7 +484,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                
+                                <option value="2021">1442H / 2021</option>
                             </select>
                         </div>
                         <div>
@@ -526,7 +545,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                
+                                <option value="2021">1442H / 2021</option>
                             </select>
                         </div>
                         <div>
@@ -606,7 +625,7 @@
                                 <option value="2024">1445H / 2024</option>
                                 <option value="2023">1444H / 2023</option>
                                 <option value="2022">1443H / 2022</option>
-                                
+                                <option value="2021">1442H / 2021</option>
                             </select>
                         </div>
                         <div>
@@ -652,7 +671,7 @@
                             <option value="2024">1445H / 2024</option>
                             <option value="2023">1444H / 2023</option>
                             <option value="2022">1443H / 2022</option>
-                            
+                            <option value="2021">1442H / 2021</option>
                         </select>
                         <select id="filterLaporanJenis" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-500">
                             <option value="">Laporan Lengkap</option>
@@ -874,6 +893,7 @@
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Nama</label>
                     <input type="text" id="panitiaNama" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-500" required>
+                    <p id="namaFeedback" class="hidden text-xs mt-1"></p>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Jabatan</label>
@@ -889,7 +909,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                    
+                        <option value="2021">1442H / 2021</option>
                     </select>
                 </div>
                 <div class="flex justify-between">
@@ -924,13 +944,14 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                    
+                        <option value="2021">1442H / 2021</option>
                     </select>
                 </div>
                 <div id="pemilikContainer" class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Nama Pemilik</label>
                     <div id="pemilikList">
                         <input type="text" class="pemilik-input w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-500 mb-2" placeholder="Nama pemilik 1" required>
+                        <p class="pemilikFeedback hidden text-xs mt-1"></p>
                     </div>
                     <button type="button" id="addPemilik" class="text-blue-600 hover:text-blue-800 text-sm">+ Tambah Pemilik</button>
                 </div>
@@ -949,6 +970,7 @@
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Nama Mustahik</label>
                     <input type="text" id="mustahikNama" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-500" required>
+                    <p id="mustahikNamaFeedback" class="hidden text-xs mt-1"></p>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">RT</label>
@@ -967,7 +989,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                        
+                        <option value="2021">1442H / 2021</option>
                     </select>
                 </div>
                 <div class="flex justify-between">
@@ -1001,7 +1023,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                    
+                        <option value="2021">1442H / 2021</option>
                     </select>
                 </div>
                 <div class="flex justify-between">
@@ -1027,7 +1049,7 @@
                         <option value="2024">1445H / 2024</option>
                         <option value="2023">1444H / 2023</option>
                         <option value="2022">1443H / 2022</option>
-                    
+                        <option value="2021">1442H / 2021</option>
                     </select>
                 </div>
                 <div class="mb-4">
@@ -3049,72 +3071,142 @@ let periode = yearFilter && yearFilter !== "all"
         }
 
         async function handlePanitiaSubmit(e) {
-            e.preventDefault();
-            const formData = {
-                nama: document.getElementById('panitiaNama').value,
-                jabatan: document.getElementById('panitiaJabatan').value,
-                hp: document.getElementById('panitiaHP').value,
-                tahun: document.getElementById('panitiaTahun').value
-            };
+    e.preventDefault();
 
-            if (editMode.isEditing && editMode.type === 'panitia') {
-                // Update existing data
-                formData.updatedAt = new Date();
-                formData.updatedBy = currentUser ? currentUser.email : 'demo';
+    const namaInput = document.getElementById('panitiaNama');
+    const feedback = document.getElementById('namaFeedback');
+    const formData = {
+        nama: namaInput.value.trim(),
+        jabatan: document.getElementById('panitiaJabatan').value.trim(),
+        hp: document.getElementById('panitiaHP').value.trim(),
+        tahun: document.getElementById('panitiaTahun').value
+    };
 
-                if (isDemo) {
-                    const index = demoData.panitia.findIndex(p => p.id === editMode.id);
-                    if (index !== -1) {
-                        demoData.panitia[index] = { ...demoData.panitia[index], ...formData };
-                        loadPanitiaData();
-                        loadDashboardData();
-                        alert('Data panitia berhasil diperbarui!');
-                    }
-                } else {
-                    try {
-                        showLoading(true);
-                        await db.collection('panitia').doc(editMode.id).update(formData);
-                        loadPanitiaData();
-                        loadDashboardData();
-                        showLoading(false);
-                        alert('Data panitia berhasil diperbarui!');
-                    } catch (error) {
-                        console.error('Error updating panitia:', error);
-                        alert('Gagal memperbarui data panitia: ' + error.message);
-                        showLoading(false);
-                    }
-                }
-            } else {
-                // Add new data
-                formData.createdAt = new Date();
-                formData.createdBy = currentUser ? currentUser.email : 'demo';
+    // 🔄 Reset tampilan
+    namaInput.classList.remove('border-red-500', 'border-green-500', 'animate-shake');
+    feedback.textContent = '';
+    feedback.classList.add('hidden');
 
-                if (isDemo) {
-                    const id = Date.now().toString();
-                    demoData.panitia.push({ id, ...formData });
-                    loadPanitiaData();
-                    loadDashboardData();
-                    alert('Data panitia berhasil disimpan!');
-                } else {
-                    try {
-                        showLoading(true);
-                        await db.collection('panitia').add(formData);
-                        loadPanitiaData();
-                        loadDashboardData();
-                        showLoading(false);
-                        alert('Data panitia berhasil disimpan!');
-                    } catch (error) {
-                        console.error('Error adding panitia:', error);
-                        alert('Gagal menyimpan data panitia: ' + error.message);
-                        showLoading(false);
-                    }
-                }
+    const showError = (msg) => {
+        alert(msg);
+        namaInput.classList.add('border-red-500', 'animate-shake');
+        feedback.textContent = `⚠️ ${msg}`;
+        feedback.classList.remove('hidden', 'text-green-600');
+        feedback.classList.add('text-red-600');
+        setTimeout(() => namaInput.classList.remove('animate-shake'), 500);
+    };
+
+    const showSuccess = (msg) => {
+        namaInput.classList.add('border-green-500');
+        feedback.textContent = `✅ ${msg}`;
+        feedback.classList.remove('hidden', 'text-red-600');
+        feedback.classList.add('text-green-600');
+        setTimeout(() => {
+            feedback.classList.add('hidden');
+            namaInput.classList.remove('border-green-500');
+        }, 3000);
+    };
+
+    // 🔧 EDIT MODE
+    if (editMode.isEditing && editMode.type === 'panitia') {
+        formData.updatedAt = new Date();
+        formData.updatedBy = currentUser ? currentUser.email : 'demo';
+
+        if (isDemo) {
+            const duplikat = demoData.panitia.some(p =>
+                p.nama.toLowerCase() === formData.nama.toLowerCase() &&
+                p.tahun === formData.tahun &&
+                p.id !== editMode.id
+            );
+            if (duplikat) {
+                showError(`Nama panitia "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                return;
             }
 
-            // Reset edit mode
-            editMode = { isEditing: false, type: null, id: null };
-            document.getElementById('panitiaModal').classList.add('hidden');
+            const index = demoData.panitia.findIndex(p => p.id === editMode.id);
+            if (index !== -1) {
+                demoData.panitia[index] = { ...demoData.panitia[index], ...formData };
+                loadPanitiaData();
+                loadDashboardData();
+                showSuccess('Data panitia berhasil diperbarui!');
+            }
+        } else {
+            try {
+                const duplikatSnapshot = await db.collection('panitia')
+                    .where('nama', '==', formData.nama)
+                    .where('tahun', '==', formData.tahun)
+                    .get();
+
+                const duplikatAda = duplikatSnapshot.docs.some(doc => doc.id !== editMode.id);
+
+                if (duplikatAda) {
+                    showError(`Nama panitia "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                    return;
+                }
+
+                showLoading(true);
+                await db.collection('panitia').doc(editMode.id).update(formData);
+                loadPanitiaData();
+                loadDashboardData();
+                showLoading(false);
+                showSuccess('Data panitia berhasil diperbarui!');
+            } catch (error) {
+                console.error('Error updating panitia:', error);
+                alert('Gagal memperbarui data panitia: ' + error.message);
+                showLoading(false);
+            }
         }
+    } else {
+        // 🔧 TAMBAH BARU
+        formData.createdAt = new Date();
+        formData.createdBy = currentUser ? currentUser.email : 'demo';
+
+        if (isDemo) {
+            const duplikat = demoData.panitia.some(p =>
+                p.nama.toLowerCase() === formData.nama.toLowerCase() &&
+                p.tahun === formData.tahun
+            );
+            if (duplikat) {
+                showError(`Nama panitia "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                return;
+            }
+
+            const newId = (demoData.panitia.length + 1).toString();
+            demoData.panitia.push({ id: newId, ...formData });
+            loadPanitiaData();
+            loadDashboardData();
+            showSuccess('Data panitia berhasil disimpan!');
+        } else {
+            try {
+                showLoading(true);
+
+                const existingSnapshot = await db.collection('panitia')
+                    .where('nama', '==', formData.nama)
+                    .where('tahun', '==', formData.tahun)
+                    .get();
+
+                if (!existingSnapshot.empty) {
+                    showLoading(false);
+                    showError(`Nama panitia "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                    return;
+                }
+
+                await db.collection('panitia').add(formData);
+                loadPanitiaData();
+                loadDashboardData();
+                showLoading(false);
+                showSuccess('Data panitia berhasil disimpan!');
+            } catch (error) {
+                console.error('Error adding panitia:', error);
+                alert('Gagal menyimpan data panitia: ' + error.message);
+                showLoading(false);
+            }
+        }
+    }
+
+    editMode = { isEditing: false, type: null, id: null };
+    document.getElementById('panitiaModal').classList.add('hidden');
+}
 
         async function handleHewanSubmit(e) {
             e.preventDefault();
@@ -3193,71 +3285,141 @@ let periode = yearFilter && yearFilter !== "all"
         }
 
         async function handleMustahikSubmit(e) {
-            e.preventDefault();
-            const formData = {
-                nama: document.getElementById('mustahikNama').value,
-                rt: document.getElementById('mustahikRT').value,
-                tahun: document.getElementById('mustahikTahun').value
-            };
+    e.preventDefault();
 
-            if (editMode.isEditing && editMode.type === 'mustahik') {
-                // Update existing data
-                formData.updatedAt = new Date();
-                formData.updatedBy = currentUser ? currentUser.email : 'demo';
+    const namaInput = document.getElementById('mustahikNama');
+    const feedback = document.getElementById('mustahikNamaFeedback');
+    const formData = {
+        nama: namaInput.value.trim(),
+        rt: document.getElementById('mustahikRT').value.trim(),
+        tahun: document.getElementById('mustahikTahun').value
+    };
 
-                if (isDemo) {
-                    const index = demoData.mustahik.findIndex(m => m.id === editMode.id);
-                    if (index !== -1) {
-                        demoData.mustahik[index] = { ...demoData.mustahik[index], ...formData };
-                        loadMustahikData();
-                        loadDashboardData();
-                        alert('Data mustahik berhasil diperbarui!');
-                    }
-                } else {
-                    try {
-                        showLoading(true);
-                        await db.collection('mustahik').doc(editMode.id).update(formData);
-                        loadMustahikData();
-                        loadDashboardData();
-                        showLoading(false);
-                        alert('Data mustahik berhasil diperbarui!');
-                    } catch (error) {
-                        console.error('Error updating mustahik:', error);
-                        alert('Gagal memperbarui data mustahik: ' + error.message);
-                        showLoading(false);
-                    }
-                }
-            } else {
-                // Add new data
-                formData.createdAt = new Date();
-                formData.createdBy = currentUser ? currentUser.email : 'demo';
+    // Reset tampilan
+    namaInput.classList.remove('border-red-500', 'border-green-500', 'animate-shake');
+    feedback.textContent = '';
+    feedback.classList.add('hidden');
 
-                if (isDemo) {
-                    const id = Date.now().toString();
-                    demoData.mustahik.push({ id, ...formData });
-                    loadMustahikData();
-                    loadDashboardData();
-                    alert('Data mustahik berhasil disimpan!');
-                } else {
-                    try {
-                        showLoading(true);
-                        await db.collection('mustahik').add(formData);
-                        loadMustahikData();
-                        loadDashboardData();
-                        showLoading(false);
-                        alert('Data mustahik berhasil disimpan!');
-                    } catch (error) {
-                        console.error('Error adding mustahik:', error);
-                        alert('Gagal menyimpan data mustahik: ' + error.message);
-                        showLoading(false);
-                    }
-                }
+    const showError = (msg) => {
+        alert(msg);
+        namaInput.classList.add('border-red-500', 'animate-shake');
+        feedback.textContent = `⚠️ ${msg}`;
+        feedback.classList.remove('hidden', 'text-green-600');
+        feedback.classList.add('text-red-600');
+        setTimeout(() => namaInput.classList.remove('animate-shake'), 500);
+    };
+
+    const showSuccess = (msg) => {
+        namaInput.classList.add('border-green-500');
+        feedback.textContent = `✅ ${msg}`;
+        feedback.classList.remove('hidden', 'text-red-600');
+        feedback.classList.add('text-green-600');
+        setTimeout(() => {
+            feedback.classList.add('hidden');
+            namaInput.classList.remove('border-green-500');
+        }, 3000);
+    };
+
+    // Edit Mode
+    if (editMode.isEditing && editMode.type === 'mustahik') {
+        formData.updatedAt = new Date();
+        formData.updatedBy = currentUser ? currentUser.email : 'demo';
+
+        if (isDemo) {
+            const duplikat = demoData.mustahik.some(m =>
+                m.nama.toLowerCase() === formData.nama.toLowerCase() &&
+                m.tahun === formData.tahun &&
+                m.id !== editMode.id
+            );
+            if (duplikat) {
+                showError(`Nama mustahik "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                return;
             }
 
-            // Reset edit mode
-            editMode = { isEditing: false, type: null, id: null };
-            document.getElementById('mustahikModal').classList.add('hidden');
+            const index = demoData.mustahik.findIndex(m => m.id === editMode.id);
+            if (index !== -1) {
+                demoData.mustahik[index] = { ...demoData.mustahik[index], ...formData };
+                loadMustahikData();
+                loadDashboardData();
+                showSuccess('Data mustahik berhasil diperbarui!');
+            }
+        } else {
+            try {
+                const duplikatSnapshot = await db.collection('mustahik')
+                    .where('nama', '==', formData.nama)
+                    .where('tahun', '==', formData.tahun)
+                    .get();
+
+                const duplikatAda = duplikatSnapshot.docs.some(doc => doc.id !== editMode.id);
+                if (duplikatAda) {
+                    showError(`Nama mustahik "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                    return;
+                }
+
+                showLoading(true);
+                await db.collection('mustahik').doc(editMode.id).update(formData);
+                loadMustahikData();
+                loadDashboardData();
+                showLoading(false);
+                showSuccess('Data mustahik berhasil diperbarui!');
+            } catch (error) {
+                console.error('Error updating mustahik:', error);
+                alert('Gagal memperbarui data mustahik: ' + error.message);
+                showLoading(false);
+            }
         }
+    } else {
+        // Tambah Baru
+        formData.createdAt = new Date();
+        formData.createdBy = currentUser ? currentUser.email : 'demo';
+
+        if (isDemo) {
+            const duplikat = demoData.mustahik.some(m =>
+                m.nama.toLowerCase() === formData.nama.toLowerCase() &&
+                m.tahun === formData.tahun
+            );
+            if (duplikat) {
+                showError(`Nama mustahik "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                return;
+            }
+
+            const newId = (demoData.mustahik.length + 1).toString();
+            demoData.mustahik.push({ id: newId, ...formData });
+            loadMustahikData();
+            loadDashboardData();
+            showSuccess('Data mustahik berhasil disimpan!');
+        } else {
+            try {
+                showLoading(true);
+
+                const existingSnapshot = await db.collection('mustahik')
+                    .where('nama', '==', formData.nama)
+                    .where('tahun', '==', formData.tahun)
+                    .get();
+
+                if (!existingSnapshot.empty) {
+                    showLoading(false);
+                    showError(`Nama mustahik "${formData.nama}" sudah ada untuk tahun ${formData.tahun}!`);
+                    return;
+                }
+
+                await db.collection('mustahik').add(formData);
+                loadMustahikData();
+                loadDashboardData();
+                showLoading(false);
+                showSuccess('Data mustahik berhasil disimpan!');
+            } catch (error) {
+                console.error('Error adding mustahik:', error);
+                alert('Gagal menyimpan data mustahik: ' + error.message);
+                showLoading(false);
+            }
+        }
+    }
+
+    editMode = { isEditing: false, type: null, id: null };
+    document.getElementById('mustahikModal').classList.add('hidden');
+}
+
 
         async function handleGuruSubmit(e) {
             e.preventDefault();
@@ -5081,6 +5243,8 @@ let periode = yearFilter && yearFilter !== "all"
   });
 </script>
 
+
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("filterTahun");
@@ -5874,6 +6038,8 @@ document.getElementById("exportSusunanPDF").addEventListener("click", () => {
     width: 180
   });
 });
+
+
 </script>
 
 <!-- ========================================================= -->
@@ -5907,42 +6073,113 @@ document.getElementById("exportSusunanPDF").addEventListener("click", () => {
   panitiaHeader.appendChild(exportPanitiaBtn);
   panitiaHeader.appendChild(panitiaFileInput);
 
-  // =========================================================
-  // 🔹 IMPORT EXCEL PANITIA
-  // =========================================================
-  importPanitiaBtn.addEventListener("click", () => panitiaFileInput.click());
+ // =========================================================
+// 🔹 Tambahkan Dropdown Tahun Import ke Header Panitia
+// =========================================================
+const importPanitiaTahunSelect = document.createElement("select");
+importPanitiaTahunSelect.id = "importPanitiaTahun";
+importPanitiaTahunSelect.className = "admin-only hidden border border-gray-300 rounded-lg px-3 py-2 text-sm ml-2";
 
-  panitiaFileInput.addEventListener("change", async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+// Tahun default dan opsinya
+const tahunSekarangpanitia = new Date().getFullYear();
+const tahunOptionspanitia = [tahunSekarangpanitia, tahunSekarangpanitia - 1, tahunSekarangpanitia - 2, tahunSekarangpanitia - 3, tahunSekarangpanitia - 4];
+tahunOptionspanitia.forEach((t) => {
+  const opt = document.createElement("option");
+  opt.value = t.toString();
+  opt.textContent = `${t} / ${t - 579}`;
+  importPanitiaTahunSelect.appendChild(opt);
+});
+panitiaHeader.appendChild(importPanitiaTahunSelect);
 
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(sheet);
+// =========================================================
+// 🔹 IMPORT PANITIA PER TAHUN (ANTI DUPLIKAT FIXED)
+// =========================================================
+importPanitiaBtn.addEventListener("click", () => {
+  panitiaFileInput.click();
+});
 
-      const batch = firebase.firestore().batch();
-      const panitiaRef = firebase.firestore().collection("panitia");
+panitiaFileInput.addEventListener("change", async (event) => {
+  const file = event.target.files[0];
+  const tahun = document.getElementById("importPanitiaTahun").value?.toString();
 
-      json.forEach((row) => {
-        const newDoc = panitiaRef.doc();
-        batch.set(newDoc, {
-          nama: row.Nama || "",
-          jabatan: row.Jabatan || "",
-          hp: row.HP?.toString() || "",
-          tahun: row.Tahun?.toString() || new Date().getFullYear().toString(),
-        });
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const data = new Uint8Array(e.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+
+    if (json.length === 0) {
+      alert("⚠️ File Excel kosong atau format salah!");
+      return;
+    }
+
+    // 🔍 Ambil data panitia yang benar-benar tahun itu saja
+    const existingSnapshot = await firebase
+      .firestore()
+      .collection("panitia")
+      .where("tahun", "==", tahun)
+      .get();
+
+    // Jika belum ada data sama sekali
+    const existingNames = existingSnapshot.empty
+      ? []
+      : existingSnapshot.docs
+          .map((doc) => (doc.data().nama || "").trim().toLowerCase())
+          .filter((n) => n !== "");
+
+    const batch = firebase.firestore().batch();
+    const panitiaRef = firebase.firestore().collection("panitia");
+
+    let added = 0;
+    let skipped = 0;
+
+    for (const row of json) {
+      const nama = (row.Nama || row.nama || "").trim();
+      if (!nama) continue;
+
+      const namaLower = nama.toLowerCase();
+
+      // ✅ Hanya skip jika nama + tahun persis sama
+      if (existingNames.includes(namaLower)) {
+        skipped++;
+        continue;
+      }
+
+      const newDoc = panitiaRef.doc();
+      batch.set(newDoc, {
+        nama: nama,
+        jabatan: row.Jabatan || row.jabatan || "",
+        hp: row.HP?.toString() || row.hp?.toString() || "",
+        tahun: tahun, // pastikan string
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
 
-      await batch.commit();
-      alert(`✅ Berhasil menambahkan ${json.length} data panitia dari Excel!`);
-      location.reload();
-    };
+      existingNames.push(namaLower);
+      added++;
+    }
 
-    reader.readAsArrayBuffer(file);
-  });
+    if (added === 0) {
+      alert(`⚠️ Tidak ada data baru untuk tahun ${tahun} (semua sudah ada).`);
+      event.target.value = "";
+      return;
+    }
+
+    await batch.commit();
+
+    alert(`✅ Import Panitia Selesai!
+📅 Tahun: ${tahun}
+➕ Ditambahkan: ${added}
+⏩ Dilewati (duplikat): ${skipped}`);
+
+    event.target.value = "";
+    location.reload();
+  };
+
+  reader.readAsArrayBuffer(file);
+});
 // =========================================================
 // 🔹 EXPORT DATA PANITIA (PER TAHUN) — HASIL RAPI
 // =========================================================
@@ -6025,6 +6262,7 @@ exportPanitiaBtn.addEventListener("click", async () => {
 });
 </script>
 
+
 <!-- ========================================================= -->
 <!-- FITUR: IMPORT + EXPORT DATA HEWAN (SAPI & KAMBING) -->
 <!-- ========================================================= -->
@@ -6055,59 +6293,54 @@ exportPanitiaBtn.addEventListener("click", async () => {
   hewanHeader.appendChild(exportHewanBtn);
   hewanHeader.appendChild(hewanFileInput);
 
-  // =========================================================
-  // 🔹 IMPORT DATA HEWAN (BISA SAPI & KAMBING)
-  // =========================================================
-  importHewanBtn.addEventListener("click", () => hewanFileInput.click());
+ // =========================================================
+// 🔹 Tambahkan Dropdown Tahun & Jenis di Header Hewan
+// =========================================================
+const tahunSelectHewan = document.createElement("select");
+tahunSelectHewan.id = "importHewanTahun";
+tahunSelectHewan.className = "admin-only hidden border border-gray-300 rounded-lg px-3 py-2 text-sm ml-2";
 
-  hewanFileInput.addEventListener("change", async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+const tahunSekarangHewan = new Date().getFullYear();
+const tahunOptionsHewan = [
+  tahunSekarangHewan,
+  tahunSekarangHewan - 1,
+  tahunSekarangHewan - 2,
+  tahunSekarangHewan - 3,
+  tahunSekarangHewan - 4
+];
+tahunOptionsHewan.forEach((t) => {
+  const opt = document.createElement("option");
+  opt.value = t.toString();
+  opt.textContent = `${t} / ${t - 579}`; // contoh 2025 / 1446H
+  tahunSelectHewan.appendChild(opt);
+});
 
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(sheet);
+const jenisSelectHewan = document.createElement("select");
+jenisSelectHewan.id = "importHewanJenis";
+jenisSelectHewan.className = "admin-only hidden border border-gray-300 rounded-lg px-3 py-2 text-sm ml-2";
 
-      const batch = firebase.firestore().batch();
-      const hewanRef = firebase.firestore().collection("hewan");
+["sapi", "kambing"].forEach((j) => {
+  const opt = document.createElement("option");
+  opt.value = j;
+  opt.textContent = j.charAt(0).toUpperCase() + j.slice(1);
+  jenisSelectHewan.appendChild(opt);
+});
 
-      json.forEach((row) => {
-        const newDoc = hewanRef.doc();
-        const jenis = (row.Jenis || "").trim().toLowerCase(); // sapi/kambing
-        const namaHewan = row.Nama_Hewan || "";
-        const pemilikList = row.Pemilik ? row.Pemilik.split(",").map(p => p.trim()) : [];
-        const tahun = row.Tahun?.toString() || new Date().getFullYear().toString();
+hewanHeader.appendChild(tahunSelectHewan);
+hewanHeader.appendChild(jenisSelectHewan);
 
-        batch.set(newDoc, {
-          jenis,
-          namaHewan,
-          pemilik: pemilikList,
-          tahun,
-        });
-      });
-
-      await batch.commit();
-      alert(`✅ Berhasil menambahkan ${json.length} data hewan (Sapi & Kambing) dari Excel!`);
-      location.reload();
-    };
-
-    reader.readAsArrayBuffer(file);
-  });
 
  // =========================================================
-// 🔹 EXPORT DATA HEWAN (PER TAHUN & PER JENIS) — HASIL RAPI
+// 🔹 EXPORT DATA HEWAN (BISA DIIMPORT ULANG)
 // =========================================================
 exportHewanBtn.addEventListener("click", async () => {
-  const tahun = document.getElementById("filterHewanTahun").value || new Date().getFullYear().toString();
+  const tahun =
+    document.getElementById("filterHewanTahun").value ||
+    new Date().getFullYear().toString();
   const jenisSelect = document.getElementById("filterHewanJenis");
 
-  // Ambil jenis dari dropdown (Sapi / Kambing / Semua)
   const selectedJenis = jenisSelect ? jenisSelect.value.toLowerCase() : "semua";
 
-  // Query Firestore
   let hewanRef = firebase.firestore().collection("hewan").where("tahun", "==", tahun);
   if (selectedJenis !== "semua") {
     hewanRef = hewanRef.where("jenis", "==", selectedJenis);
@@ -6119,35 +6352,24 @@ exportHewanBtn.addEventListener("click", async () => {
     return;
   }
 
-  // Ambil data dari Firestore
+  // 🔹 Format data agar cocok untuk impor
   const data = snapshot.docs.map((doc, index) => {
     const d = doc.data();
     return {
       No: index + 1,
       Jenis: d.jenis ? d.jenis.toUpperCase() : "",
-      Nama_Hewan: d.namaHewan || "-",
-      Pemilik: Array.isArray(d.pemilik) ? d.pemilik.join(", ") : "",
+      "Nama Hewan": d.namaHewan || "-",
+      Pemilik: Array.isArray(d.pemilik)
+        ? d.pemilik.join(", ")
+        : d.pemilik || "-",
       Tahun: d.tahun || tahun,
     };
   });
 
-  // Judul dinamis
-  const judul =
-    selectedJenis === "semua"
-      ? `DATA HEWAN QURBAN TAHUN ${tahun}`
-      : `DATA HEWAN QURBAN TAHUN ${tahun} (${selectedJenis.toUpperCase()})`;
+  // 🔹 Worksheet dengan header yang sama seperti file impor
+  const worksheet = XLSX.utils.json_to_sheet(data, { header: ["No", "Jenis", "Nama Hewan", "Pemilik", "Tahun"] });
 
-  // Buat worksheet
-  const worksheet = XLSX.utils.json_to_sheet([]);
-  XLSX.utils.sheet_add_aoa(
-    worksheet,
-    [[judul], [""], ["No", "Jenis", "Nama Hewan", "Pemilik", "Tahun"]],
-    { origin: "A1" }
-  );
-
-  XLSX.utils.sheet_add_json(worksheet, data, { origin: "A4", skipHeader: true });
-
-  // Auto width kolom
+  // Auto width
   worksheet["!cols"] = [
     { wch: 5 },
     { wch: 10 },
@@ -6156,22 +6378,16 @@ exportHewanBtn.addEventListener("click", async () => {
     { wch: 10 },
   ];
 
-  // Gaya rapi (border, alignment)
+  // 🔹 Tambahkan sedikit styling sederhana
   const range = XLSX.utils.decode_range(worksheet["!ref"]);
   for (let R = range.s.r; R <= range.e.r; ++R) {
     for (let C = range.s.c; C <= range.e.c; ++C) {
-      const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
-      if (!worksheet[cellAddress]) continue;
-      worksheet[cellAddress].s = {
-        border: {
-          top: { style: "thin", color: { auto: 1 } },
-          bottom: { style: "thin", color: { auto: 1 } },
-          left: { style: "thin", color: { auto: 1 } },
-          right: { style: "thin", color: { auto: 1 } },
-        },
+      const cell = XLSX.utils.encode_cell({ r: R, c: C });
+      if (!worksheet[cell]) continue;
+      worksheet[cell].s = {
         alignment: {
           vertical: "center",
-          horizontal: (C === 3) ? "left" : "center",
+          horizontal: C === 3 ? "left" : "center",
           wrapText: true,
         },
         font: { name: "Calibri", sz: 11 },
@@ -6179,19 +6395,23 @@ exportHewanBtn.addEventListener("click", async () => {
     }
   }
 
-  // Buat workbook dan simpan
+  // 🔹 Simpan workbook
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "Hewan Qurban");
 
   const fileName =
     selectedJenis === "semua"
       ? `Data_Hewan_Qurban_${tahun}.xlsx`
-      : `Data_Hewan_Qurban_${tahun}_${selectedJenis.charAt(0).toUpperCase() + selectedJenis.slice(1)}.xlsx`;
+      : `Data_Hewan_Qurban_${tahun}_${selectedJenis
+          .charAt(0)
+          .toUpperCase()}${selectedJenis.slice(1)}.xlsx`;
 
   XLSX.writeFile(workbook, fileName);
 
-  alert(`✅ Data Hewan Qurban (${selectedJenis.toUpperCase()}, Tahun ${tahun}) berhasil diexport!`);
+  alert(`✅ Data Hewan Qurban (${selectedJenis.toUpperCase()}, Tahun ${tahun}) berhasil diekspor! 
+File bisa langsung diimpor kembali ke sistem.`);
 });
+
 </script>
 
 <!-- ========================================================= -->
@@ -6226,41 +6446,124 @@ exportHewanBtn.addEventListener("click", async () => {
   headerBtns.appendChild(exportBtn);
   headerBtns.appendChild(fileInput);
 
-  // =========================================================
-  // 🔹 IMPORT EXCEL
-  // =========================================================
-  importBtn.addEventListener("click", () => fileInput.click());
+// =========================================================
+// 🔹 Tambahkan Dropdown Tahun & RT di Header Mustahik
+// =========================================================
+const tahunSelect = document.createElement("select");
+tahunSelect.id = "importMustahikTahun";
+tahunSelect.className = "admin-only hidden border border-gray-300 rounded-lg px-3 py-2 text-sm ml-2";
 
-  fileInput.addEventListener("change", async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
+const tahunSekarangmustahik = new Date().getFullYear();
+const tahunOptionsmustahik = [tahunSekarangmustahik, tahunSekarangmustahik - 1, tahunSekarangmustahik - 2, tahunSekarangmustahik - 3, tahunSekarangmustahik - 4];
+tahunOptionsmustahik.forEach((t) => {
+  const opt = document.createElement("option");
+  opt.value = t.toString();
+  opt.textContent = `${t} / ${t - 579}`; // contoh: 2025 / 1446H
+  tahunSelect.appendChild(opt);
+});
 
-    const reader = new FileReader();
-    reader.onload = async (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const json = XLSX.utils.sheet_to_json(sheet);
+const rtSelect = document.createElement("select");
+rtSelect.id = "importMustahikRT";
+rtSelect.className = "admin-only hidden border border-gray-300 rounded-lg px-3 py-2 text-sm ml-2";
+["RT 10/04", "RT 03/04", "RT 04/04", "RT 02/03", "RT 03/03"].forEach((rt) => {
+  const opt = document.createElement("option");
+  opt.value = rt;
+  opt.textContent = rt;
+  rtSelect.appendChild(opt);
+});
 
-      const batch = firebase.firestore().batch();
-      const mustahikRef = firebase.firestore().collection("mustahik");
+// Masukkan dropdown ke header
+headerBtns.appendChild(tahunSelect);
+headerBtns.appendChild(rtSelect);
 
-      json.forEach((row) => {
-        const newDoc = mustahikRef.doc();
-        batch.set(newDoc, {
-          nama: row.Nama || "",
-          rt: row.RT || "",
-          tahun: row.Tahun?.toString() || new Date().getFullYear().toString(),
-        });
+// =========================================================
+// 🔹 IMPORT DATA MUSTAHIK PER TAHUN & PER RT (TANPA KETERANGAN)
+// =========================================================
+importBtn.addEventListener("click", () => {
+  fileInput.click();
+});
+
+fileInput.addEventListener("change", async (event) => {
+  const file = event.target.files[0];
+  const tahun = document.getElementById("importMustahikTahun").value?.toString();
+  const rt = document.getElementById("importMustahikRT").value?.toString();
+
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const data = new Uint8Array(e.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+
+    if (json.length === 0) {
+      alert("⚠️ File Excel kosong atau format salah!");
+      return;
+    }
+
+    // 🔍 Ambil data mustahik di tahun & RT yang sama
+    const existingSnapshot = await firebase
+      .firestore()
+      .collection("mustahik")
+      .where("tahun", "==", tahun)
+      .where("rt", "==", rt)
+      .get();
+
+    const existingNames = existingSnapshot.empty
+      ? []
+      : existingSnapshot.docs
+          .map((doc) => (doc.data().nama || "").trim().toLowerCase())
+          .filter((n) => n !== "");
+
+    const batch = firebase.firestore().batch();
+    const mustahikRef = firebase.firestore().collection("mustahik");
+
+    let added = 0;
+    let skipped = 0;
+
+    for (const row of json) {
+      const nama = (row.Nama || row.nama || "").trim();
+      if (!nama) continue;
+
+      const namaLower = nama.toLowerCase();
+      if (existingNames.includes(namaLower)) {
+        skipped++;
+        continue;
+      }
+
+      const newDoc = mustahikRef.doc();
+      batch.set(newDoc, {
+        nama: nama,
+        rt: rt,
+        tahun: tahun,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
 
-      await batch.commit();
-      alert(`✅ Berhasil menambahkan ${json.length} data mustahik dari Excel!`);
-      location.reload();
-    };
+      existingNames.push(namaLower);
+      added++;
+    }
 
-    reader.readAsArrayBuffer(file);
-  });
+    if (added === 0) {
+      alert(`⚠️ Tidak ada data baru untuk ${rt} tahun ${tahun} (semua sudah ada).`);
+      event.target.value = "";
+      return;
+    }
+
+    await batch.commit();
+
+    alert(`✅ Import Mustahik Selesai!
+📅 Tahun: ${tahun}
+🏠 RT: ${rt}
+➕ Ditambahkan: ${added}
+⏩ Dilewati (duplikat): ${skipped}`);
+
+    event.target.value = "";
+    location.reload();
+  };
+
+  reader.readAsArrayBuffer(file);
+});
 
   // =========================================================
 // 🔹 EXPORT DATA MUSTAHIK — PER TAHUN & PER RT (RAPI)
@@ -6462,7 +6765,77 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script>
+  // ===============================
+  // 🔄 AUTO REFRESH DATA HEWAN QURBAN (FIRESTORE COMPAT)
+  // ===============================
+  function loadHewanOtomatis() {
+    const db = firebase.firestore();
+    const tahun = document.getElementById("filterHewanTahun")?.value || "2024";
+    const jenis = document.getElementById("filterHewanJenis")?.value || "";
+    const hewanTable = document.getElementById("hewanTable");
+    if (!hewanTable) return;
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98aa065da6a8df9f',t:'MTc1OTgwNDczMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    // tampilkan loading
+    hewanTable.innerHTML = `
+      <tr><td colspan="6" class="text-center text-gray-500 py-3">🔄 Memuat data hewan qurban ${tahun}...</td></tr>
+    `;
+
+    let query = db.collection("hewan").where("tahun", "==", tahun);
+    if (jenis) query = query.where("jenis", "==", jenis);
+
+    // Jalankan listener realtime Firestore
+    query.onSnapshot((snapshot) => {
+      if (snapshot.empty) {
+        hewanTable.innerHTML = `
+          <tr><td colspan="6" class="text-center text-gray-500 py-3">❌ Belum ada data hewan ${tahun}</td></tr>
+        `;
+        return;
+      }
+
+      let html = "";
+      let index = 1;
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const pemilikList = Array.isArray(data.pemilik)
+          ? data.pemilik.join(", ")
+          : data.pemilik || "-";
+
+        html += `
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-4 py-2 text-center">${index++}</td>
+            <td class="px-4 py-2 capitalize">${data.jenis || "-"}</td>
+            <td class="px-4 py-2">${data.kode || "-"}</td>
+            <td class="px-4 py-2">${pemilikList}</td>
+            <td class="px-4 py-2 text-center">${data.tahun}</td>
+            <td class="px-4 py-2 text-center admin-only hidden">
+              <button class="bg-red-500 text-white px-2 py-1 rounded">Hapus</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      hewanTable.innerHTML = html;
+    }, (err) => {
+      console.error("Gagal memuat data hewan realtime:", err);
+      hewanTable.innerHTML = `
+        <tr><td colspan="6" class="text-center text-red-500 py-3">⚠️ Gagal memuat data</td></tr>
+      `;
+    });
+  }
+
+  // Jalankan otomatis saat halaman dimuat
+  document.addEventListener("DOMContentLoaded", () => {
+    loadHewanOtomatis();
+
+    // Dengarkan perubahan filter
+    document.getElementById("filterHewanTahun")?.addEventListener("change", loadHewanOtomatis);
+    document.getElementById("filterHewanJenis")?.addEventListener("change", loadHewanOtomatis);
+  });
+</script>
+
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98aa065da6a8df9f',t:'MTc1OTgwNDczMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
 </html>
 
