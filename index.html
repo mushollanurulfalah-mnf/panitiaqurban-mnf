@@ -1215,6 +1215,55 @@
             showTab('panitia');
         }
 
+        
+document.addEventListener("DOMContentLoaded", () => {
+  const db = firebase.firestore();
+  const yearSelector = document.getElementById("yearSelector");
+  const refreshBtn = document.getElementById("refreshBtn");
+
+  // Fungsi untuk membuat listener realtime per tahun
+  function listenDashboardData(selectedYear) {
+    let panitiaYear = [], hewanYear = [], mustahikYear = [], guruYear = [], galeriYear = [];
+
+    const collections = {
+      panitia: db.collection("panitia").where("tahun", "==", selectedYear),
+      hewan: db.collection("hewan").where("tahun", "==", selectedYear),
+      mustahik: db.collection("mustahik").where("tahun", "==", selectedYear),
+      guru: db.collection("guru").where("tahun", "==", selectedYear),
+      galeri: db.collection("galeri").where("tahun", "==", selectedYear)
+    };
+
+    Object.entries(collections).forEach(([key, queryRef]) => {
+      queryRef.onSnapshot(snapshot => {
+        const data = snapshot.docs.map(doc => doc.data());
+        if (key === "panitia") panitiaYear = data;
+        if (key === "hewan") hewanYear = data;
+        if (key === "mustahik") mustahikYear = data;
+        if (key === "guru") guruYear = data;
+        if (key === "galeri") galeriYear = data;
+        updateDashboardUI(panitiaYear, hewanYear, mustahikYear, guruYear, galeriYear);
+      });
+    });
+  }
+
+  // Jalankan listener saat halaman dibuka
+  let currentYear = yearSelector.value;
+  listenDashboardData(currentYear);
+
+  // Jika tahun diganti → pasang listener baru
+  yearSelector.addEventListener("change", () => {
+    currentYear = yearSelector.value;
+    listenDashboardData(currentYear);
+  });
+
+  // Tombol refresh manual (jika mau tetap dipakai)
+  refreshBtn.addEventListener("click", () => {
+    listenDashboardData(currentYear);
+  });
+});
+
+
+
         function setupEventListeners() {
             // Tab navigation
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -5472,7 +5521,7 @@ const susunanPanitia = {
         <p>Koord. : Ust. Maulana Hs S.Pd.I</p>
         <p>Anggota :</p>
         <ol class="list-decimal list-inside ml-4">
-          <li>Sudarmaji</li><li>Djunaidi Mingga/li><li>Asmat Ribut</li><li>H. Amrullah Halimi</li><li>Azhar</li><li>Hendrik</li>
+          <li>Sudarmaji</li><li>Djunaidi Mingga</li><li>Asmat Ribut</li><li>H. Amrullah Halimi</li><li>Azhar</li><li>Hendrik</li>
           <li>Zulhendi</li><li>Endang</li><li>Buyung</li>
         </ol>
         <p class="font-semibold mt-3">Seksi Pembantu Umum</p>
@@ -5607,11 +5656,11 @@ const susunanPanitia = {
           <li>Muhammad Rizki Muslih</li><li>Reza Fahlevi</li><li>Hafis Huzaefah</li><li>Yayat</li>
         </ol>
         <p class="font-semibold mt-3">Seksi Penghalus</p>
-        <p>Koord. : Ust. Abdul Muiz S.Pd.I</p>
+        <p>Koord. : Ust. Maulana Hs S.Pd.I</p>
         <p>Anggota :</p>
         <ol class="list-decimal list-inside ml-4">
-          <li>Sudarmaji</li><li>Djunaidi Mingga/li><li>Asmat Ribut</li><li>H. Amrullah Halimi</li><li>Azhar</li><li>Hendrik</li>
-          <li>Ust. Maulana Hs S.Pd.I</li><li>Zulhendi</li><li>Endang</li><li>Buyung</li><li>Syafei</li>
+          <li>Sudarmaji</li><li>Djunaidi Mingga</li><li>Asmat Ribut</li><li>H. Amrullah Halimi</li><li>Azhar</li><li>Hendrik</li>
+          <li>Zulhendi</li><li>Endang</li><li>Buyung</li><li>Syafei</li>
         </ol>
         <p class="font-semibold mt-3">Seksi Pembantu Umum</p>
         <p>Koord. : H. Hapiz HAR</p>
@@ -6765,77 +6814,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script>
-  // ===============================
-  // 🔄 AUTO REFRESH DATA HEWAN QURBAN (FIRESTORE COMPAT)
-  // ===============================
-  function loadHewanOtomatis() {
-    const db = firebase.firestore();
-    const tahun = document.getElementById("filterHewanTahun")?.value || "2024";
-    const jenis = document.getElementById("filterHewanJenis")?.value || "";
-    const hewanTable = document.getElementById("hewanTable");
-    if (!hewanTable) return;
-
-    // tampilkan loading
-    hewanTable.innerHTML = `
-      <tr><td colspan="6" class="text-center text-gray-500 py-3">🔄 Memuat data hewan qurban ${tahun}...</td></tr>
-    `;
-
-    let query = db.collection("hewan").where("tahun", "==", tahun);
-    if (jenis) query = query.where("jenis", "==", jenis);
-
-    // Jalankan listener realtime Firestore
-    query.onSnapshot((snapshot) => {
-      if (snapshot.empty) {
-        hewanTable.innerHTML = `
-          <tr><td colspan="6" class="text-center text-gray-500 py-3">❌ Belum ada data hewan ${tahun}</td></tr>
-        `;
-        return;
-      }
-
-      let html = "";
-      let index = 1;
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        const pemilikList = Array.isArray(data.pemilik)
-          ? data.pemilik.join(", ")
-          : data.pemilik || "-";
-
-        html += `
-          <tr class="border-b hover:bg-gray-50">
-            <td class="px-4 py-2 text-center">${index++}</td>
-            <td class="px-4 py-2 capitalize">${data.jenis || "-"}</td>
-            <td class="px-4 py-2">${data.kode || "-"}</td>
-            <td class="px-4 py-2">${pemilikList}</td>
-            <td class="px-4 py-2 text-center">${data.tahun}</td>
-            <td class="px-4 py-2 text-center admin-only hidden">
-              <button class="bg-red-500 text-white px-2 py-1 rounded">Hapus</button>
-            </td>
-          </tr>
-        `;
-      });
-
-      hewanTable.innerHTML = html;
-    }, (err) => {
-      console.error("Gagal memuat data hewan realtime:", err);
-      hewanTable.innerHTML = `
-        <tr><td colspan="6" class="text-center text-red-500 py-3">⚠️ Gagal memuat data</td></tr>
-      `;
-    });
-  }
-
-  // Jalankan otomatis saat halaman dimuat
-  document.addEventListener("DOMContentLoaded", () => {
-    loadHewanOtomatis();
-
-    // Dengarkan perubahan filter
-    document.getElementById("filterHewanTahun")?.addEventListener("change", loadHewanOtomatis);
-    document.getElementById("filterHewanJenis")?.addEventListener("change", loadHewanOtomatis);
-  });
-</script>
-
 
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98aa065da6a8df9f',t:'MTc1OTgwNDczMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+
 </body>
 </html>
 
