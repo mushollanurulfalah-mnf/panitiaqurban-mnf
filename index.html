@@ -4997,12 +4997,6 @@ let periode = yearFilter && yearFilter !== "all"
                 // Replace Firebase data
                 for (const [collection, items] of Object.entries(dataToRestore)) {
                     if (['panitia', 'hewan', 'mustahik', 'guru', 'galeri'].includes(collection)) {
-                        // Delete all existing documents
-                        const snapshot = await db.collection(collection).get();
-                        const batch = db.batch();
-                        snapshot.docs.forEach(doc => batch.delete(doc.ref));
-                        await batch.commit();
-
                         // Add new documents
                         for (const item of items) {
                             const { id, ...data } = item;
@@ -6820,6 +6814,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
 
 
 
